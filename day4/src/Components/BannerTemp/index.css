@@ -1,0 +1,9 @@
+.banner{
+    background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
+    background-image: url('https://phoneky.co.uk/thumbs/screensavers/down/places/blueocean_qa39dbq1.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 30px;
+    padding: 10px;
+    opacity: 0.8;
+}

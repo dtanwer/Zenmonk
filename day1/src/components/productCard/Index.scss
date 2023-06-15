@@ -1,0 +1,29 @@
+.card{
+    width: 400px;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    .name{
+        margin: 10px;
+        h1{
+            display: inline;
+            margin: 5px;
+        }
+        span{
+            margin-left: 100px;
+            font-size: 25px;
+            font-weight: bold;
+        }
+    }
+    img{
+        width: 400px;
+        height: 200px;
+        border-radius: 10px;
+    }
+    .description{
+        width: 300px;
+        p{
+            padding: 12px;
+        }
+    }
+
+}

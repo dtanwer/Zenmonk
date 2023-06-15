@@ -1,0 +1,55 @@
+table{
+   width: 90%;
+    margin: 5rem;
+}
+table th{
+    padding: 20px;
+    text-align: center;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    background-color: #efed71;
+}
+tr{
+    background-color: #FBFACD;
+
+}
+
+tr td{
+    border-radius: 5px;
+}
+
+.task{
+    width: 400px;
+    
+}
+.task p{
+    margin: 10px;
+    
+}
+.listBtn,.checkBox{
+    width: 100px;
+    text-align: center;
+}
+.date{
+    width: 200px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.listBtn button{
+    border-radius: 5px;
+    border: none;
+    margin: 20px;
+    height:40px;
+    width:200px;
+    background-color: red;
+    color: white;
+}
+.list h1{
+    margin-left: 20px;
+    color: rgb(82, 2, 157);
+    width: 320px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(214, 199, 229);
+}

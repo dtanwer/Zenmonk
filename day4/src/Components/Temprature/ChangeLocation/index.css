@@ -1,0 +1,26 @@
+.changeLoaction{
+    margin-top: 60px;
+    text-align: center;
+}
+.ButtenText{
+    padding: 0;
+    margin: 0;
+    font-size: larger;
+    font-weight: 600;
+    color: #ffffff
+}
+.ButtenText:hover{
+    
+    color: #ffffff
+}
+.ButtenText .locationIcon{
+    margin-right: 5px;
+    font-size: 30px;
+}
+.locationButton{
+    width: 400px;
+    height: 50px;
+    border: none;
+    color: #ffffffb0;
+    background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
+}

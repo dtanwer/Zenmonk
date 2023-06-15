@@ -1,0 +1,37 @@
+.list{
+    width: 370px;
+    height: 400px;
+    background-color: #d8b9b9ea;
+    border-radius: 10px;
+    position: absolute;
+    top:250px;
+    left: 15px;
+    overflow-x: scroll;
+}
+.list .icon{
+    margin: 20px;
+    text-align: end;
+    color: #6b4747;
+}
+
+.icon ul{
+    list-style: none;
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+}
+ul li{
+    border-bottom: 2px solid black;
+    padding: 20px;
+    cursor: pointer;
+    
+}
+ul li:hover{
+    background-color: #8c767679;
+    cursor: pointer;
+    
+}
+li span{
+    font-size: small;
+    font-weight: bolder;
+}

@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;700&display=swap');
+body {
+ margin: 0;
+ background-color: #523026;
+ font-family: 'Jura', sans-serif;
+ color: #FFFFFF;
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

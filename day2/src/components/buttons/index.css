@@ -1,0 +1,22 @@
+.myButtons{
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.btn{
+    text-align: center;
+}
+.btn button{
+    border-radius: 5px;
+    border: none;
+    margin: 20px;
+    height:40px;
+    width:300px;
+    color: white;
+}
+.btn .delete{
+    background-color: red;
+}
+.btn .complete{
+    background-color: green;
+}

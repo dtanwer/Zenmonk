@@ -1,0 +1,28 @@
+.IconContent{
+    margin:20px;
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 400px;
+    height: 150px;
+}
+.IconContent .item{
+    background-color: #272E37;
+    border-radius: 10px;
+    margin: 2px;
+    text-align: center;
+}
+.IconContent .active{
+    text-align: center;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+.para{
+    margin-top:20px;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 15px;
+}
+.active .para{
+    color: #000000;
+}

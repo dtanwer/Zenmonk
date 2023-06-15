@@ -1,0 +1,10 @@
+.details{
+    margin: 15px;
+    line-height: 0.5;
+}
+.details h1{
+    font-size: 35px;
+}
+.details p{
+    font-size: 30px;
+}

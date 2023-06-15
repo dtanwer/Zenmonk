@@ -1,0 +1,25 @@
+
+.DateTime h2,.DateTime h3,.DateTime h5{
+    color: #FFFFFF;
+    line-height: 0.5;
+    font-family: 'Montserrat', sans-serif;
+}
+.DateTime h3{
+   font-weight: 400;
+   font-size: 18px;
+}
+.DateTime h2{
+    font-size: 35px;
+    font-weight: 700;
+}
+.DateTime h5{
+    display: flex;
+    line-height: 1.5;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.DateTime{
+    margin:20px;
+    margin-top: 60px;
+}

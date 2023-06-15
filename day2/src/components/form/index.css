@@ -1,0 +1,30 @@
+.myform{
+    text-align: center;
+    margin-top: 5rem;
+}
+.myform input{
+    border-radius: 10px;
+    border: none;
+    margin: 20px;
+    height:50px;
+    width:400px;
+    font-size: larger;
+    padding-right: 1rem;
+
+
+}
+
+.text{
+    width:500px; 
+    padding-left: 1rem;
+}
+
+
+.myform button{
+    width:100px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: green;
+    color: white;
+    border: none;
+}

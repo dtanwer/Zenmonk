@@ -1,0 +1,9 @@
+.Home{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.Home .LeftHome{
+    text-align: center;
+    margin-top: 50%;
+    transform: translateY(-50%);
+}

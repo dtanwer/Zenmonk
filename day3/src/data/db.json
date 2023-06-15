@@ -1,0 +1,40 @@
+{
+    "data": [
+      {
+        "name": "Ammy Virk",
+        "artist": "Ammy Virk",
+        "img_source": "https://cdn.dribbble.com/users/1237300/screenshots/6478927/__-1_1_____.gif",
+        "srco": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+      },
+      {
+        "name": "Cold",
+        "artist": "Maroon 5",
+        "img_source": "https://media.tenor.com/EllrjImAYEgAAAAC/music-festival-music.gif",
+        "srco": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+      },
+      {
+        "name": "Daylight",
+        "artist": "David Kushner",
+        "img_source": "https://i.gifer.com/3jBV.gif",
+        "srco": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"
+      },
+      {
+        "name": "Ammy Virk",
+        "artist": "Ammy Virk",
+        "img_source": "https://i.gifer.com/3jBV.gif",
+        "srco": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+      },
+      {
+        "name": "Cold",
+        "artist": "Maroon 5",
+        "img_source": "https://i.pinimg.com/originals/14/d6/dc/14d6dc0f242386738df2b7f067a9c593.gif",
+        "srco": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+      },
+      {
+        "name": "Daylight",
+        "artist": "David Kushner",
+        "img_source": "https://64.media.tumblr.com/0c9ebfb8020aabf870853808ca1a376d/befeed58903ef914-6c/s500x750/81bc6d2418af45b12336b9aa8a674af70273bd09.gif",
+        "srco": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"
+      }
+    ]
+  }

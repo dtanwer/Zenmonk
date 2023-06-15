@@ -1,0 +1,15 @@
+
+
+.heading{
+    color: #FFFFFF;
+    line-height: 0.5;
+}
+.heading h1{
+    font-size: 75px;
+}
+.heading h2{
+    font-size: 35px;
+    font-weight: 300;
+    margin-right: 130px;
+    color: #ffffffc9;
+}

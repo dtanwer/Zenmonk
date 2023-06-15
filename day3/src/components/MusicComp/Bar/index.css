@@ -1,0 +1,13 @@
+.bar{
+    margin: auto;
+    width: 80%;
+    height: 5px;
+    background-color: #B1B1B1;
+    border-radius: 5px;
+}
+.bar .played{
+    width: 100px;
+    height: 5px;
+    background-color: #F2F1F1;
+    border-radius: 5px;
+}

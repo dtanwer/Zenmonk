@@ -1,0 +1,19 @@
+.content{
+    margin: 30px;
+    margin-top: 70px;
+    font-size: 25px;
+}
+
+
+.content .row{
+    display:grid;
+    line-height: 1.8;
+    grid-template-columns: 1fr 1fr;
+}
+
+.content .row .txtRight{
+    text-align: right;
+}
+.content .row .col{
+    font-weight: bold;
+}
