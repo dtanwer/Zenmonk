@@ -1,0 +1,50 @@
+ .info{
+    position: absolute;
+    display: grid;
+    grid-template-rows: 0.1fr 0.5fr 1fr;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color:#dfe7fa89;
+    border-radius: 20px;
+    width: 1000px;
+    height: 900px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+   
+}
+.profile{
+    filter: blur(4px);
+}
+.info .cross{
+    text-align: end;
+    color: #1443BD;
+    
+}
+.crossIcon{
+    background-color: rgba(255, 255, 255, 0.817);
+    border-radius: 100%;
+    padding: 10px;
+    margin: 20px;
+    cursor: pointer;
+}
+.form{
+    margin: 60px;
+}
+
+.form .name{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+.profileImg img{
+    border-radius: 100%;
+}
+.profileImg button{
+    margin-top: 10px;
+}
+.profileImg{
+    text-align: center;
+}
+.btns button{
+    margin-left: 100px;
+}

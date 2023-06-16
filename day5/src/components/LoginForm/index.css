@@ -1,0 +1,51 @@
+.loginForm{
+    display: grid;
+    grid-template-rows: 0.3fr  1fr;
+}
+.back p{
+    font-size: larger;
+    display: flex;
+    margin: 50px;
+    margin-top: 80px;
+    color: #8692A6;
+    cursor: pointer;
+}
+.box{
+    margin: auto;
+    width: 500px;
+}
+.box p{
+    color: #8692A6;
+    font-size: large;
+    margin-bottom: 40px;
+}
+.box h1{
+    font-size: 35px;
+}
+
+.Input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 50px;
+}
+.inpt label{
+    color: #8692A6;
+}
+.box .select{
+    margin-top: 10px;
+}
+.btn button{
+    margin-top: 20px;
+    height: 50px;
+    font-size: 20px;
+}
+.box .footerInfo {
+    text-align: center;
+    margin-top: 30px;
+}
+.footerInfo p span{
+    color: #2C73EB;
+    cursor: pointer;
+    font-weight:500;
+}
+ 

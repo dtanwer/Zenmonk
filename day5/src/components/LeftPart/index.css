@@ -1,0 +1,14 @@
+.leftPart{
+    display: grid;
+    grid-template-rows: 0.4fr 1fr;
+    height: 100vh;
+    background-color: #2C73EB;
+    color: #FFFFFF;
+}
+.leftPart .leftImg{
+    text-align: center;
+}
+.leftPart .logo{
+    padding: 20px;
+    padding-left:100px ;
+}
