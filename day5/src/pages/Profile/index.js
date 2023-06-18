@@ -1,34 +1,22 @@
-import React from 'react'
+import {useState} from 'react'
 import './index.css'
 import Navbar from '../../components/NavBar'
 import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
 import { Input, Image, message, Form, Button, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import changeData from '../../utils/changeData';
+import {changeData} from '../../utils/changeData';
 function Profile() {
+  const [imgSrc,setImgSrc]=useState('https://media.licdn.com/dms/image/D4D03AQFXxV3eDmX38A/profile-displayphoto-shrink_200_200/0/1686504020188?e=1692230400&v=beta&t=iTiGk06DfI4RZVpuG7FA7jE3G33pucGsSeeS946Wik4');
   const navigate = useNavigate()
   const handelCross = () => {
     navigate('/home')
   }
   const [form] = Form.useForm();
-  const props = {
-    name: 'file',
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    headers: {
-      authorization: 'authorization-text',
-    },
-    onChange(info) {
-      if (info.file.status !== 'uploading') {
-        console.log(info.file, info.fileList);
-      }
-      if (info.file.status === 'done') {
-        message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === 'error') {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-  };
+  const handelChange=(e)=>{
+    setImgSrc(e.target.value);
+    console.log(e.target.value);
+  }
 
   const onFinish = (values) => {
     changeData(values);
@@ -60,11 +48,8 @@ function Profile() {
         <div className="profileImg">
           <Image
             width={200}
-            src="https://media.licdn.com/dms/image/D4D03AQFXxV3eDmX38A/profile-displayphoto-shrink_200_200/0/1686504020188?e=1692230400&v=beta&t=iTiGk06DfI4RZVpuG7FA7jE3G33pucGsSeeS946Wik4"
+            src={imgSrc}
           /> <br />
-          <Upload {...props}>
-            <Button icon={<UploadOutlined />}>Click to Upload</Button>
-          </Upload>
         </div>
         <div className="form">
           <Form initialValues={{ remember: true }}

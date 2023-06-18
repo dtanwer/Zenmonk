@@ -1,0 +1,17 @@
+.cartItem{
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 0.6fr 1fr;
+    background-color: rgb(173, 202, 226);
+    margin-right: 20px;
+    margin-left:20px ;
+    border-radius: 50px;
+}
+
+.img img{
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+

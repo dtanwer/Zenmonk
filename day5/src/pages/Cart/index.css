@@ -1,0 +1,9 @@
+.cart{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.heading{
+    text-align: center;
+    margin: 20px;
+    margin-bottom: 50px;
+}
