@@ -1,0 +1,13 @@
+.form{
+   margin: auto;
+   margin-top: 100px;
+}
+.heading h1{
+    margin: auto;
+    margin-top: 50px;
+    width: 500px;
+    color: rgb(16, 16, 113);
+    background-color: rgba(161, 145, 232, 0.179);
+    padding: 10px;
+    border-radius: 20px;
+}

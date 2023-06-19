@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './index.css'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Input, Form, Radio, Button } from 'antd';
@@ -9,31 +9,34 @@ const LoginForm = () => {
     const handleChangeType = (e) => {
         setUserType(e.target.value);
         console.log(e.target.value);
-       
+
     };
 
+    useEffect(() => {
+        if (localStorage.getItem('id')) {
+            navigate('/home');
+        }
+    },[])
+    console.log(localStorage.getItem('id'));
     const onFinish = (values) => {
-        const data=JSON.parse(localStorage.getItem(useType));
-        let email=false;
-        if(!data) alert("User Doesnot Exist!!");
+        const data = JSON.parse(localStorage.getItem(useType));
+        let email = false;
+        if (!data) alert("User Doesnot Exist!!");
 
-        for(let i=0;i<data.length;i++)
-        {
-            if(data[i].email===values.email && data[i].password===values.password)
-            {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].email === values.email && data[i].password === values.password) {
                 localStorage.setItem('id', JSON.stringify(data[i]));
                 localStorage.setItem('useType', useType);
                 navigate('/home')
                 return;
             }
-            else if(data[i].email===values.email)
-            {
-                email=true;
+            else if (data[i].email === values.email) {
+                email = true;
             }
-            
+
         }
         if (email) alert("Password Did Not match!!!!");
-        if(!email) alert("Invalid Mail!!!");
+        if (!email) alert("Invalid Mail!!!");
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
@@ -58,7 +61,7 @@ const LoginForm = () => {
                         <div className="inputEmail inpt">
                             <label htmlFor="email">Username</label>
                             <Form.Item name="email" rules={[{ required: true, message: 'Please input your Email!' }]}>
-                                <Input  className='Input' id='email'/>
+                                <Input className='Input' id='email' />
                             </Form.Item>
                         </div>
                         <div className="inputpassword inpt">
@@ -78,7 +81,7 @@ const LoginForm = () => {
                         </div>
                         <div className="btn">
                             <Form.Item>
-                            <Button htmlType="submit" type="primary" block>Login</Button>
+                                <Button htmlType="submit" type="primary" block>Login</Button>
                             </Form.Item>
                         </div>
                         <div className="footerInfo">

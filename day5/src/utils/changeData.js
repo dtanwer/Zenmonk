@@ -9,7 +9,7 @@ export const changeData = (value) => {
             data[i].name = value.name;
             data[i].email = value.email;
             localStorage.setItem(useType, JSON.stringify(data));
-            localStorage.setItem('id', JSON.stringify(data[i]));
+            localStorage.setItem('id', JSON.stringify(value));
             return;
         }
 

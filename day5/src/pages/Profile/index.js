@@ -3,8 +3,7 @@ import './index.css'
 import Navbar from '../../components/NavBar'
 import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
-import { Input, Image, message, Form, Button, Upload } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import { Input, Image, Form, Button } from 'antd';
 import {changeData} from '../../utils/changeData';
 function Profile() {
   const [imgSrc,setImgSrc]=useState('https://media.licdn.com/dms/image/D4D03AQFXxV3eDmX38A/profile-displayphoto-shrink_200_200/0/1686504020188?e=1692230400&v=beta&t=iTiGk06DfI4RZVpuG7FA7jE3G33pucGsSeeS946Wik4');
@@ -13,10 +12,10 @@ function Profile() {
     navigate('/home')
   }
   const [form] = Form.useForm();
-  const handelChange=(e)=>{
-    setImgSrc(e.target.value);
-    console.log(e.target.value);
-  }
+  // const handelChange=(e)=>{
+  //   setImgSrc(e.target.value);
+  //   console.log(e.target.value);
+  // }
 
   const onFinish = (values) => {
     changeData(values);
@@ -33,6 +32,9 @@ function Profile() {
     form.setFieldsValue({
       name: data.name,
       email: data.email,
+      address:data.address,
+      phone:data.phone,
+      lastName:data.lastName
     })
   }
   onFill();
