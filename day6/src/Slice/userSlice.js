@@ -9,7 +9,7 @@ const initialState={
         },
         {
             userId:2,
-            userName:'Chaten',
+            userName:'Chetan',
             userImg:'https://media.licdn.com/dms/image/D4D03AQFXxV3eDmX38A/profile-displayphoto-shrink_100_100/0/1686504020188?e=1692835200&v=beta&t=hcWGqJnq6mmDlkfW9GoijOqkHc0_6oZkVR0GAzOSsyg',
             userTask:[],
         },

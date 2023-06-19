@@ -5,11 +5,10 @@ import { useState } from 'react';
 import {  Badge} from 'antd';
 import './index.css'
 function TodoList() {
-    const [users, setUsers] = useState([])
-    const data = useSelector((state) => state.users.users)
-    useEffect(() => {
-        setUsers([...data]);
-    })
+    // const [users, setUsers] = useState([])
+    const users = useSelector((state) => state.users.users)
+    // setUsers([...data]);
+
     return (
         <div>
             <div className='DetailsBox'>
