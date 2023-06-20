@@ -1,0 +1,29 @@
+.view{
+    position: absolute;
+    width: 900px;
+    height: 900px;
+    border-radius: 20px;
+    background-color: rgba(213, 222, 251, 0.942);
+    padding: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.cross{
+    text-align: end;
+    margin-right: 20px;
+    cursor: pointer;
+    font-size: larger;
+}
+.Date{
+    color: rgb(0, 0, 149);
+}
+.title{
+    color: rgb(0, 0, 149);
+    border-bottom: 2px solid rgb(0, 0, 149);
+}
+
+.body{
+    margin: 30px;
+}
