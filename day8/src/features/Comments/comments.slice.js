@@ -21,6 +21,7 @@ const CommentSlice = createSlice({
             })
             .addCase(getPostComments.rejected, (state, action) => {
                 state.error = action.error;
+                console.log(action.error.message)
             })
            
     }

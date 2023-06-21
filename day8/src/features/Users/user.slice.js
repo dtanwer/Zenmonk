@@ -1,9 +1,7 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getUsers,getUserPost,getUser } from "./user.type";
+import { createSlice } from "@reduxjs/toolkit";
+import { getUsers} from "./user.type";
 const initialState = {
-    users: [],
-    posts:[],
-    user:{}
+    users: []
 };
 
 const userSlice = createSlice({
