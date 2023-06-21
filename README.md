@@ -5,3 +5,4 @@
 # Day 4 Weather app
 # Day 5 LocaL storage
 # Day 6 Task ToDo Using redux toolkit
+# Day 7 Sticky notes with Search and Text Editor
