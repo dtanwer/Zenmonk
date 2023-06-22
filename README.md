@@ -1,8 +1,9 @@
 # Zenmonk
-# Day 1 Search Data
+# Day 1 Search Data  https://search-productssssss.netlify.app/
 # Day 2 Todo List Using Routing
 # Day 3 Music Player
 # Day 4 Weather app
 # Day 5 LocaL storage
-# Day 6 Task ToDo Using redux toolkit
-# Day 7 Sticky notes with Search and Text Editor
+# Day 6 Task ToDo Using redux toolkit    
+# Day 7 Sticky notes with Search and Text Editor  https://comfy-cucurucho-87b55d.netlify.app/
+# Day 8 Redux ToolKit with api
