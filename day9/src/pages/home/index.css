@@ -1,0 +1,14 @@
+.myGrids{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 2;
+}
+
+.AddBtn{
+    position: fixed;
+    right: 50px;
+    bottom:50px;
+    border-radius: 100px;
+    width: 100px;
+    height: 100px;
+}

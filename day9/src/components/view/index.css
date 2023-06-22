@@ -1,0 +1,19 @@
+.view{
+    /* display: grid;
+    grid-template-rows: 1fr 1fr 1fr; */
+}
+.myimg img {
+    width: 300px;
+    height: 300px;
+    border-radius: 300px;
+}
+/* .project{
+   
+}
+.Education{
+   
+} */
+.headingWithImg{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
