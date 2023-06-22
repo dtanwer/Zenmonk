@@ -3,6 +3,19 @@
     grid-template-columns: repeat(4,1fr);
     gap: 2;
 }
+.logOut{
+    text-align: end;
+    margin-right: 20px;
+}
+
+.logOut button{
+    padding: 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    background-color: #3399ff;
+    color: white;
+}
 
 .AddBtn{
     position: fixed;
@@ -11,4 +24,8 @@
     border-radius: 100px;
     width: 100px;
     height: 100px;
+    background-color: green;
+    color: white;
+    font-size: 20px;
+    border: none;
 }

@@ -15,7 +15,9 @@ function Home() {
   }
   return (
     <div>Home
+      <div className='logOut'>
       <button onClick={handelLogOut} >LogOut</button>
+      </div>
       <button  className='AddBtn' onClick={() => navigate('/form')} >Add</button>
 
 

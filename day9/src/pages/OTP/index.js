@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
+import OtpInput from 'react-otp-input';
 import './index.css'
 // import myOTP from '../../utils/myData'
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +9,7 @@ import { addUser, setLogin } from '../../features/userSlice';
 function OTP() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [otp, setOtp] = useState(-1);
+  const [otp, setOtp] = useState('');
   const number = useSelector((state) => state.data.CurrentUserNumber);
   const users = useSelector((state) => state.data.users);
 
@@ -30,7 +31,7 @@ function OTP() {
   }
 
   const handelSubmit = () => {
-    if (process.env.REACT_APP_OTP !== otp) {
+    if (process.env.REACT_APP_OTP !== otp.toString()) {
       alert("OTP is Wrong!!");
     }
     else {
@@ -53,11 +54,20 @@ function OTP() {
 
   }
   return (
-    <div>
+  <div className='login'>
+      <div className='box'>
       <h1>Enter OTP {process.env.REACT_APP_OTP} </h1>
-      <input type="number" onChange={(e) => setOtp(e.target.value)} />
-      <button onClick={handelSubmit} >Submit OTP</button>
+      <OtpInput 
+      value={otp}
+      onChange={setOtp}
+      numInputs={4}
+      inputStyle='otpInput'
+      renderSeparator={<span> </span>}
+      renderInput={(props) => <input  {...props} />}
+    />
+      <button className='btn' onClick={handelSubmit} >Submit OTP</button>
     </div>
+  </div>
   )
 }
 

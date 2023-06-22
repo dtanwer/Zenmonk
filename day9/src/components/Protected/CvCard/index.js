@@ -32,10 +32,8 @@ function CvCard({ index, item, id }) {
                     <h2>{item.name}</h2>
                 </div>
                 <div className='btns'>
-                    <Button type="primary" onClick={showModal}>
-                        View
-                    </Button>
-                    <button onClick={handelDelete}>Delete</button>
+                    <button className='viewBtn' onClick={showModal}>View</button>
+                    <button className='deleteBtn' onClick={handelDelete}>Delete</button>
                 </div>
             </div>
             <Modal  width={800} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}  footer={[]} >
