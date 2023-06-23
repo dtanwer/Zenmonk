@@ -9,6 +9,7 @@ function Editor({ index, setIsModalOpen, mynote, edit }) {
   const [note, setNote] = useState(mynote?.body);
   const [heading, setHeading] = useState(mynote?.title);
   const dispatch = useDispatch();
+  // ahgsfdhadfhgfaghf.m;m.lhn,nb   chcchb  xhzgjhzjjzxhjzj deepaa is the punjabi form of deepak jaat pee ke peepa ho gya hai 
 
   const handelBlur = (newContent) => {
     setNote(newContent);

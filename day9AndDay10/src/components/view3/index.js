@@ -1,9 +1,13 @@
 import React from 'react'
 import './index.css'
-function View({item}) {
-    console.log(item);
+import { generatePDF } from '../../utils/exportPdf'
+function View3({item,view}) {
   return (
-    <div className='view'>
+    <>
+    {
+        view && <div   className='exportbtn' ><button onClick={()=>generatePDF('#report3')}>Export PDF</button></div>
+    }
+    <div className='view3' id='report3'>
         <div className='headingWithImg'>
             <div className='info'>
                 <h1>Name and Details</h1>
@@ -31,7 +35,8 @@ function View({item}) {
         </div>
         
     </div>
+    </>
   )
 }
 
-export default View
+export default View3

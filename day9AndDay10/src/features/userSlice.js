@@ -5,6 +5,7 @@ const initialState = {
   isLogin:false,
   CurrentUserId:"",
   CurrentUserNumber:-1,
+  CvTempletnumber:-1,
   cv:[]
 };
 
@@ -33,9 +34,12 @@ const UserSlice = createSlice({
     },
     setNumber:(state,action)=>{
         state.CurrentUserNumber=action.payload;
+    },
+    setCvTemplet:(state,action)=>{
+      state.CvTempletnumber=action.payload
     }
   },
 });
 
-export const {addUser,addCV,deleteCV,setLogin,setLogOut,setNumber } = UserSlice.actions;
+export const {addUser,addCV,deleteCV,setLogin,setLogOut,setNumber,setCvTemplet } = UserSlice.actions;
 export default UserSlice.reducer;

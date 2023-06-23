@@ -1,0 +1,50 @@
+.deleteBtn{
+    padding: 15px;
+    border-radius: 8px;
+    border: none;
+    font-size: 18px;
+    background-color: red;
+    color: white;
+}
+.viewBtn{
+    padding: 15px;
+    border-radius: 8px;
+    border: none;
+    font-size: 18px;
+    background-color:#3399ff;
+    color: white;
+}
+.setBtn button{
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 8px;
+    width: 100px;
+    border: none;
+    font-size: 18px;
+    background-color:#3399ff;
+    color: white;
+}
+
+.setBtn
+{
+    text-align: end;
+}
+.page{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.exportbtn{
+    text-align: end;
+    margin: 20px;
+}
+
+.exportbtn button{
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+
+}

@@ -6,14 +6,16 @@ import {
   Input,
   Select,
   Modal,
+  Pagination 
 } from 'antd';
 import { v4 as uuid } from 'uuid';
 import './index.css'
 import { useState,useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCV } from '../../features/userSlice';
-import View from '../../components/view';
+import { addCV,setCvTemplet } from '../../features/userSlice';
+import View1 from '../../components/view1';
+import { getTemplets } from '../../utils/getTemplets';
 const { Option } = Select;
 const formItemLayout = {
   labelCol: {
@@ -48,10 +50,16 @@ const tailFormItemLayout = {
 function InputForm() {
   const phone = useSelector((state) => state.data.CurrentUserNumber);
   const userId = useSelector((state) => state.data.CurrentUserId);
+  const CvTempletnumber = useSelector((state) => state.data.CvTempletnumber);
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const formRef=useRef(null);
   const navigeate = useNavigate();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
+  const [templet,setTemplet]=useState(CvTempletnumber);
+
   const [item,setItem]=useState({
     cgpa: "*****",
     email: "*******@gmail.com",
@@ -69,20 +77,32 @@ function InputForm() {
     skill: "A  B  C  D ",
     university: "++++",
     website: "*****.com",
+    CvTempletnumber:templet,
   });
 
   const onFinish = (values) => {
     const id = uuid().slice(0, 8);
-    dispatch(addCV({ id, userId, cvData: values }));
+    dispatch(addCV({ id, userId,CvTempletnumber:templet, cvData: values }));
+    formRef.current?.resetFields();
+    navigeate('/home');
   };
+  const handelOnChange=(e)=>{
+    let {name,value}=e.target;
+    setItem({...item,[name]:value});
+  }
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
+  const handelChangeTemplets=(currentTemp)=>{
+    setTemplet(currentTemp)
+    console.log(currentTemp)
+  }
+  const handelSet=()=>{
+    dispatch(setCvTemplet(templet));
+    handleCancel();
+  }
+
+  
   const showModal = () => {
     setIsModalOpen(true);
-  };
-  const handelClick = () => {
-    console.log( form);
   };
   const handleOk = () => {
     setIsModalOpen(false);
@@ -105,11 +125,7 @@ function InputForm() {
     </Form.Item>
   );
   
-  const handelOnChange=(e)=>{
-    let {name,value}=e.target;
-    setItem({...item,[name]:value});
-    console.log(item)
-  }
+ 
   const onWebsiteChange = (value) => {
     if (!value) {
       setAutoCompleteResult([]);
@@ -296,7 +312,7 @@ function InputForm() {
                 },
               ]}
             >
-              <Input.TextArea showCount maxLength={50} name="intro" onChange={handelOnChange} />
+              <Input.TextArea showCount maxLength={150} name="intro" onChange={handelOnChange} />
             </Form.Item>
 
             <Form.Item
@@ -372,7 +388,14 @@ function InputForm() {
         </div>
       </div>
       <Modal width={800} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}  open={isModalOpen} footer={[]} >
-        <View item={item} />
+        <div className='page'>
+          <h1>Templets</h1>
+          <Pagination onChange={handelChangeTemplets} defaultCurrent={templet} total={30} />
+          </div>
+        {
+          getTemplets(templet,item,false)
+        }
+        <div className='setBtn'> <button  onClick={handelSet} >Set</button></div>
       </Modal>
     </>
   );

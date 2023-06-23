@@ -1,0 +1,20 @@
+.SelectTempletes{
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 20px;
+    padding: 50px;
+    
+}
+.item{
+    width: 300px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.item img{
+    width: 295px;
+    height: 395px;
+    /* border: 1px solid black; */
+    border-radius: 10px;
+}

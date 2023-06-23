@@ -1,0 +1,104 @@
+.view2{
+   padding: 20px;
+   display: grid;
+   grid-template-columns: 1fr 0.7fr;
+}
+
+.view2 .left{
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    height: 100vh;
+    background-color: rgb(255, 251, 251);
+}
+.view2 .right{
+    display: grid;
+    color: white;
+    grid-template-rows: 1fr 1fr 1fr 0.2fr;
+    height: 100vh;
+    background-color: rgb(41, 41, 43);
+}
+
+.right .items{
+    margin: 10px;
+    text-align: center;
+}
+.left .items{
+    margin: 10px;
+}
+.items .headings{
+    width: 200px;
+    margin-left: 25px;
+    border: 4px solid rgb(247, 159, 31);
+}
+.items .details{
+    line-height: 0.5;
+}
+.details ul{
+    text-align: start;
+    margin-top: 50px;
+    margin-left: 60px;
+}
+
+.right .icons{
+    text-align: center;
+    font-size: large;
+}
+.icons .icon{
+    font-size: 40px;
+    margin: 10px;
+}
+.myImgContent{
+    position: relative;
+}
+.myImgContent .Content
+{
+    position: absolute;
+    z-index: 1;
+    background-color:  rgb(247, 159, 31);
+    top: 50px;
+    width:702px;
+    height: 100px;
+}
+
+.Content .myImg{
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    top: -65px;
+    border-radius: 250px;
+    left:-15px;
+    background-color: rgb(247, 159, 31);
+}
+.Content .name{
+    top: 10px;
+    line-height: 0.6;
+    color: white;
+    position: absolute;
+    right: 250px;
+}
+.myImg img{
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    border: 10px solid black;
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+}
+.items .heading{
+    padding-left: 10px;
+    height: 50px;
+    width: 350px;
+    background-color:rgb(247, 159, 31);
+}
+.footer{
+    position: absolute;
+    height: 40px;
+    width: 420px;
+    bottom: 112px;
+    left: 43px;
+    background-color:rgb(247, 159, 31);
+}
+.projects{
+    border-bottom: 30px solid rgb(247, 159, 31);
+}

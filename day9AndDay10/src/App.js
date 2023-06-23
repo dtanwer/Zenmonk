@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import OTP from './pages/OTP';
 import Home from './pages/home';
 import InputForm from './pages/Form';
+import SelectTemplets from './pages/SelectTemplets';
 
 function App() {
   const publicRouting = [
@@ -52,6 +53,7 @@ function App() {
       </Routes>
       </BrowserRouter>
       {/* <InputForm/> */}
+      {/* <SelectTemplets/> */}
     </div>
   );
 }

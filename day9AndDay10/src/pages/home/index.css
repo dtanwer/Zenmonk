@@ -1,0 +1,50 @@
+.myGrids {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2;
+}
+
+.logOut {
+    text-align: end;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.logOut button {
+    padding: 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    background-color: #ff0000;
+    color: white;
+    transition: .5s;
+}
+
+.logOut button:hover {
+    transform: scale3d(1.1, 1.1, 1.1);
+
+}
+
+.AddBtn {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    border-radius: 100px;
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    color: white;
+    font-size: 20px;
+    border: none;
+}
+
+.cvHeading {
+    text-align: center;
+    color: #0f7eed;
+    width: 200px;
+    background-color: rgb(212, 227, 241);
+    padding: 2px;
+    margin-left: 30px;
+    border-radius: 10px;
+
+}
