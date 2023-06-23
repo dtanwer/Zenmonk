@@ -7,3 +7,5 @@
 # Day 6 Task ToDo Using redux toolkit    
 # Day 7 Sticky notes with Search and Text Editor  https://comfy-cucurucho-87b55d.netlify.app/
 # Day 8 Redux ToolKit with api
+# Day 9 and 10  CV Builder
+
