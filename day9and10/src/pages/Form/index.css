@@ -1,0 +1,23 @@
+.form{
+    text-align: center;
+}
+.inputform{
+    padding: 20px;
+    margin-left: 30%;
+}
+
+.btns button{
+    margin: 20px;
+}
+
+.backBtn{
+    position: absolute;
+    right: 100px;
+    top: 50px;
+    background-color: rgb(27, 143, 245);
+    color: white;
+    font-size: larger;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+}

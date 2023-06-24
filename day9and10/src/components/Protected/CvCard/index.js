@@ -2,11 +2,13 @@ import { useState } from 'react'
 import { Modal } from 'antd';
 import './index.css'
 import { useDispatch } from 'react-redux'
-import { deleteCV } from '../../../features/userSlice';
+import { deleteCV,setDraftCv } from '../../../features/userSlice';
 import { getTemplets } from '../../../utils/getTemplets';
-function CvCard({ CvTempletnumber, index, item, id }) {
+import { useNavigate } from 'react-router-dom';
+function CvCard({ CvTempletnumber, index, item, id, edit }) {
 
     const dispatch = useDispatch();
+    const navigete=useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {
         setIsModalOpen(true);
@@ -20,6 +22,10 @@ function CvCard({ CvTempletnumber, index, item, id }) {
 
     const handelDelete = () => {
         dispatch(deleteCV(id))
+    }
+    const handelEdit=()=>{
+        dispatch(setDraftCv({id,index,cvData:item,CvTempletnumber,edit:true}))
+        navigete('/form')
     }
 
     return (
@@ -38,6 +44,10 @@ function CvCard({ CvTempletnumber, index, item, id }) {
                 <div className='btns'>
                     <button className='viewBtn' onClick={showModal}>View</button>
                     <button className='deleteBtn' onClick={handelDelete}>Delete</button>
+                    {
+                    
+                        edit && <button className='deleteBtn' onClick={handelEdit}>Edit</button>
+                    }
                 </div>
             </div>
             <Modal width={900} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={[]} >

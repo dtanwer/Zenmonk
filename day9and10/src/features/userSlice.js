@@ -6,7 +6,8 @@ const initialState = {
   CurrentUserId:"",
   CurrentUserNumber:-1,
   CvTempletnumber:-1,
-  cv:[]
+  draftData:{edit:false},
+  cv:[],
 };
 
 const UserSlice = createSlice({
@@ -37,9 +38,26 @@ const UserSlice = createSlice({
     },
     setCvTemplet:(state,action)=>{
       state.CvTempletnumber=action.payload
+    },
+    setDraftCv:(state,action)=>{
+      state.draftData=action.payload
+    },
+    editCvDraft:(state,action)=>{
+      let index=-1;
+      for(let i=0;i<state.cv.length;i++)
+      {
+        if(state.cv[i].id===action.payload.id)
+        {
+          index=i;
+          break;
+        }
+      }
+
+      state.cv[index]=action.payload;
+      
     }
   },
 });
 
-export const {addUser,addCV,deleteCV,setLogin,setLogOut,setNumber,setCvTemplet } = UserSlice.actions;
+export const {addUser,addCV,deleteCV,setLogin,setLogOut,setNumber,setCvTemplet,setDraftCv,editCvDraft } = UserSlice.actions;
 export default UserSlice.reducer;

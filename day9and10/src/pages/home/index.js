@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { setLogOut } from '../../features/userSlice';
 import CvCard from '../../components/Protected/CvCard';
-import { Button, Modal } from 'antd';
+import {  Modal,Empty } from 'antd';
 import SelectTemplets from '../SelectTemplets';
 function Home() {
   const dispatch = useDispatch();
@@ -39,14 +39,30 @@ function Home() {
       <button onClick={handelLogOut} >LogOut</button>
       </div>
       <button  className='AddBtn' onClick={showModal} >Add</button>
-<div className='cvHeading'><h1>My CV's</h1></div>
+{cv.length>0 && <div className='cvHeading'><h1>My CV's</h1></div>}
 
       <div className='myGrids'>
         {
           cv.map((item, i) => {
-            if (userId === item.userId)
+            if (userId === item.userId && !item.isDraft)
               return (
-                <CvCard index={i} CvTempletnumber={item.CvTempletnumber} item={item.cvData} id={item.id} />
+                <CvCard key={item.id} index={i} CvTempletnumber={item.CvTempletnumber} item={item.cvData} id={item.id} edit={false}/>
+              )
+          })
+        }
+      </div>
+      {cv.length>0 && <div className='cvHeading'  style={{width:'400px', marginBottom:'40px',marginTop:'50px'}}><h1>My Draft CV's</h1></div>}
+
+      {
+        cv.length===0 && <Empty style={{marginTop:'370px'}} />
+      }
+      
+      <div className='myGrids'>
+        {
+          cv.map((item, i) => {
+            if (userId === item.userId && item.isDraft)
+              return (
+                <CvCard key={item.id} index={i} CvTempletnumber={item.CvTempletnumber} item={item.cvData} id={item.id} edit={true} />
               )
           })
         }
