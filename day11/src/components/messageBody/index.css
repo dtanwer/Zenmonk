@@ -76,3 +76,8 @@
     margin-left: 20px;
     font-size: 3rem;
 }
+.emoji{
+    position: absolute;
+    bottom: 100px;
+    right: 20px;
+}

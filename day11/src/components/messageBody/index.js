@@ -7,32 +7,43 @@ import NotificationsActiveRoundedIcon from '@mui/icons-material/NotificationsAct
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import Message from '../messages';
+import { useSelector } from 'react-redux';
+import EmojiPicker from 'emoji-picker-react';
 
 function MessageBody({ group }) {
   const [message, setMessage] = useState("");
+  const [showEmojis, setShowEmojis] = useState(false);
 
-  const users =
-  {
-    name: 'deepak',
-    active: false,
-    message: [
-      {
-        time: '12:00 AM',
-        sender: ['Hii', 'I am Demo Msg'],
-        reciverMsg: ['hellow', 'How are You!!']
-      },
-      {
-        time: '1:00 PM',
-        sender: ['Hii', 'I am Demo Msg'],
-        reciverMsg: ['hellow', 'How are You!!']
-      },
-      {
-        time: '3:00 PM',
-        sender: ['Hii', 'I am Demo Msg'],
-        reciverMsg: ['hellow', 'How are You!!']
-      },
-    ]
-  }
+  const addEmoji = (e) => {
+    let sym = e.unified.split("-");
+    let codesArray = [];
+    sym.forEach((el) => codesArray.push("0x" + el));
+    let emoji = String.fromCodePoint(...codesArray);
+    setMessage(message + emoji);
+  };
+
+  const users = useSelector((state) => state.user.currentWindowMsg);
+  // {
+  //   name: 'deepak',
+  //   active: false,
+  //   message: [
+  //     {
+  //       time: '12:00 AM',
+  //       sender: ['Hii', 'I am Demo Msg'],
+  //       reciverMsg: ['hellow', 'How are You!!']
+  //     },
+  //     {
+  //       time: '1:00 PM',
+  //       sender: ['Hii', 'I am Demo Msg'],
+  //       reciverMsg: ['hellow', 'How are You!!']
+  //     },
+  //     {
+  //       time: '3:00 PM',
+  //       sender: ['Hii', 'I am Demo Msg'],
+  //       reciverMsg: ['hellow', 'How are You!!']
+  //     },
+  //   ]
+  // }
 
 
   const groupDetails = {
@@ -45,7 +56,6 @@ function MessageBody({ group }) {
   }
   return (
     <div className='msgBody'>
-
       <div className="ActiveUser">
         <div className="senderDetails">
           <div className="img">
@@ -66,7 +76,7 @@ function MessageBody({ group }) {
       </div>
       <div className="messages">
         {
-          users.message.map((item, index) => {
+          users?.message?.map((item, index) => {
             return (
               <div className='myDiv'>
                 <Message data={item.sender} sender={true} time={item.time} />
@@ -89,7 +99,13 @@ function MessageBody({ group }) {
           {
             message.length === 0 ? <MicOutlinedIcon className='icon' /> : <SendRoundedIcon onClick={sendMsg} className='icon' />
           }
-          <EmojiEmotionsOutlinedIcon className='icon' />
+          <EmojiEmotionsOutlinedIcon className='icon' onClick={() => setShowEmojis(!showEmojis)} />
+
+          {showEmojis && (
+            <div className='emoji'>
+              <EmojiPicker onEmojiClick={addEmoji}  />
+            </div>
+          )}
         </div>
       </div>
 

@@ -6,7 +6,7 @@ function Message({ sender,data,time }) {
     return (
         <>
             {
-                data.map((msg,i) => {
+                data?.map((msg,i) => {
                     return (
                         <div key={i} className={sender === true ? 'sender myMsg' : 'reciver myMsg'}>
                             <p>{msg}</p>

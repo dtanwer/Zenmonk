@@ -27,36 +27,53 @@ function Chats() {
     },
     {
       name:'deepak',
-      active:false
+      active:false,
+      message:[
+        {
+          time:'12:00 AM',
+          sender:['Hhellow','Demo Msg'],
+          reciverMsg:['hellow','I am Fine!!']
+        },
+        
+      ]
     },
     {
       name:'deepak',
-      active:true
+      active:false,
+      message:[
+        {
+          time:'1:00 AM',
+          sender:['Hii','I am Demo Msg'],
+          reciverMsg:['hell','How are You!!']
+        },
+        
+      ]
     },
     {
       name:'deepak',
-      active:false
+      active:false,
+      message:[
+        {
+          time:'12:00 AM',
+          sender:['Hii','I am Demo Msg'],
+          reciverMsg:['hellow','How are You!!']
+        },
+        
+      ]
     },
     {
       name:'deepak',
-      active:false
+      active:false,
+      message:[
+        {
+          time:'12:00 AM',
+          sender:['Hii','I am Demo Msg'],
+          reciverMsg:['hellow','How are You!!']
+        },
+        
+      ]
     },
-    {
-      name:'deepak',
-      active:false
-    },
-    {
-      name:'deepak',
-      active:false
-    },
-    {
-      name:'deepak',
-      active:false
-    },
-    {
-      name:'deepak',
-      active:false
-    },
+    
   ]
   return (
     <div className='chats'>
@@ -77,7 +94,7 @@ function Chats() {
         {
           users.map((item,index)=>{
             return(
-              <UserCard  key={index} onlineCard={true} active={item.active}/>
+              <UserCard  key={index} i={index} onlineCard={true} active={item.active} user={item}/>
             )
           })
         }
