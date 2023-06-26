@@ -6,30 +6,56 @@ function Chats() {
   const users=[
     {
       name:'deepak',
+      active:false,
+      message:[
+        {
+          time:'12:00 AM',
+          sender:['Hii','I am Demo Msg'],
+          reciverMsg:['hellow','How are You!!']
+        },
+        {
+          time:'1:00 PM',
+          sender:['Hii','I am Demo Msg'],
+          reciverMsg:['hellow','How are You!!']
+        },
+        {
+          time:'3:00 PM',
+          sender:['Hii','I am Demo Msg'],
+          reciverMsg:['hellow','How are You!!']
+        },
+      ]
     },
     {
       name:'deepak',
+      active:false
     },
     {
       name:'deepak',
+      active:true
     },
     {
       name:'deepak',
+      active:false
     },
     {
       name:'deepak',
+      active:false
     },
     {
       name:'deepak',
+      active:false
     },
     {
       name:'deepak',
+      active:false
     },
     {
       name:'deepak',
+      active:false
     },
     {
       name:'deepak',
+      active:false
     },
   ]
   return (
@@ -51,7 +77,7 @@ function Chats() {
         {
           users.map((item,index)=>{
             return(
-              <UserCard  key={index} onlineCard={true}/>
+              <UserCard  key={index} onlineCard={true} active={item.active}/>
             )
           })
         }

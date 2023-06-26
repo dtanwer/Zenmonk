@@ -2,12 +2,77 @@
     display: grid;
     grid-template-rows: 0.2fr 1fr 0.2fr;
 }
-.msgBody .inputMsg{
-    background-color: red;
-}
+
 .msgBody .messages{
-    background-color: aqua;
+    background-color: rgb(250, 250, 250);
+    border-left:1px solid  rgba(224, 222, 222, 0.656);
+    overflow-y: scroll;
+    height: 630px;
+    position: relative;
 }
+
+.msgBody .messages::-webkit-scrollbar{
+    display: none;
+}
+
+
 .msgBody .ActiveUser{
-    background-color: blue;
+    border-bottom:1px solid  rgba(224, 222, 222, 0.656);
+    border-left:1px solid  rgba(224, 222, 222, 0.656);
+    height: 146px;
+}
+
+.inputMsg{
+    display: grid;
+    padding-top: 40px;
+    grid-template-columns: 0.3fr 1fr 0.5fr;
+    color: rgb(206, 206, 206);
+    border:1px solid  rgba(224, 222, 222, 0.656);
+}
+.EnterMsg input{
+    width: 100%;
+    height: 50px;
+    font-size: 30px;
+    border: none;
+}
+.EnterMsg input:focus{
+    outline: none;
+}
+
+.otherIcons .icon ,.attach .icon{
+    font-size: 3rem;
+    margin-left: 50px;
+    cursor: pointer;
+}
+
+.ActiveUser{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.ActiveUser .senderDetails{
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+}
+
+.senderDetails .img img{
+    width: 90px;
+    height: 90px;
+    border-radius: 80px;
+    margin-top: 30px;
+    margin-left: 40px;
+}
+.senderDetails .nameDetails{
+    line-height: 0.5;
+    margin-top: 40px;
+}
+
+.icons{
+    text-align: end;
+    color: rgb(79, 231, 137);
+    margin-right: 100px;
+}
+.icons .icon{
+    margin-top: 40px;
+    margin-left: 20px;
+    font-size: 3rem;
 }

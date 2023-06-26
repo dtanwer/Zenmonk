@@ -4,6 +4,10 @@
     border-bottom: 1px solid  rgba(224, 222, 222, 0.656);
     padding-top: 10px;
     height: 110px;
+    cursor: pointer;
+}
+.currentWindow{
+   background-color:rgb(234, 236, 255);
 }
 .userCard .content{
     /* background-color: red; */

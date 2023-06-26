@@ -40,5 +40,10 @@
 .users{
     overflow-y: scroll;
     height: 590px;
+    /* height:min-content; */
+}
+
+.users::-webkit-scrollbar{
+    display: none;
 }
 
