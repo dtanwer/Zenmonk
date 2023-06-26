@@ -1,0 +1,24 @@
+.signUp{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+}
+.signUp .left{
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+.signUp .left h1{
+    font-size: 80px;
+    margin-top: 50%;
+}
+.signUp .right{
+   background-color: rgb(245, 245, 245);
+}
+.signUp .right .box{
+    width: 400px;
+    height: 500px;
+    border-radius: 20px;
+    margin: auto;
+    margin-top: 25%;
+}

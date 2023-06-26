@@ -37,9 +37,9 @@ function View1({ item, view }) {
                                 <h2>CONTACTS</h2>
                                 <ul>
                                     <li className='myLi'> <LocationOnIcon className='icon' /> <span>1719 Penne Street</span></li>
-                                    <li className='myLi'> <EmailIcon className='icon' /> <span>{item.email}</span></li>
+                                    <li className='myLi'> <EmailIcon className='icon' /> <span><a href={`mailto:${item.email}`} target="_blank" >{item.email}</a></span></li>
                                     <li className='myLi'> <LocalPhoneIcon className='icon' /> <span>{item.phone}</span></li>
-                                    <li className='myLi'> <LanguageIcon className='icon' /><span>{item.website}</span></li>
+                                    <li className='myLi'> <LanguageIcon className='icon' /> <span><a href={item.website} target='_blank'> {item.website}</a></span> </li>
                                 </ul>
 
                             </li>

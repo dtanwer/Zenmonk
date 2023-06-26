@@ -1,0 +1,13 @@
+.msgBody{
+    display: grid;
+    grid-template-rows: 0.2fr 1fr 0.2fr;
+}
+.msgBody .inputMsg{
+    background-color: red;
+}
+.msgBody .messages{
+    background-color: aqua;
+}
+.msgBody .ActiveUser{
+    background-color: blue;
+}

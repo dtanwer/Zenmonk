@@ -1,0 +1,22 @@
+.sideBar{
+    height: 100vh;
+    color: rgb(214, 217, 243);
+    text-align: center;
+    border-right: 1px solid  rgba(224, 222, 222, 0.656);
+}
+.active {
+    color: rgb(130, 137, 251)
+}
+.sideBar .links{
+    margin-top: 100px;
+    line-height: 5;
+}
+.sideBar .footer{
+    margin-top: 170px;
+    color: rgb(130, 137, 251);
+    line-height: 4;
+}
+.sideBar .BarIcon{
+    padding: 30px;
+    border-bottom:1px solid  rgba(224, 222, 222, 0.656);
+}

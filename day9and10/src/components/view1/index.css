@@ -72,3 +72,7 @@
     height: 95%;
     grid-template-rows: 0.5fr 1fr 1fr;
 }
+a{
+    text-decoration: none;
+    color: black;
+}

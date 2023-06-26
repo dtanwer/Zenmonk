@@ -81,11 +81,11 @@ function View2({ item, view }) {
                         <div className='headings'><h3>Contact</h3></div>
                         <div className='details'>
                             <h3>Email</h3>
-                            <p>{item.email}</p>
+                            <p><span><a href={`mailto:${item.email}`} target="_blank"  style={{color:'white'}} >{item.email}</a></span></p>
                             <h3>Phone</h3>
                             <p> {item.phone}</p>
                             <h3>Website</h3>
-                            <p>{item.website}</p>
+                            <p><span><a href={item.website} target='_blank'  style={{color:'white'}}   > {item.website}</a></span></p>
                         </div>
                     </div>
                     <div className="items">

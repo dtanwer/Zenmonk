@@ -81,9 +81,28 @@ function InputForm() {
     CvTempletnumber: templet,
   });
 
+  const dumyData = {
+    cgpa: "10.0",
+    email: "Demo@gmail.com",
+    gender: "male",
+    graduatingYear: "000",
+    intro: "This is Dummy Intro of my CV",
+    name: "Demo",
+    phone: "123456789",
+    prefix: "91",
+    project1: "Dummy project 1 section ",
+    project2: "Dummy project 2 section",
+    school: "Dummy School",
+    schoolMarks: "100",
+    schoolYear: "0000",
+    skill: "A  B  C  D ",
+    university: "Dummy Data",
+    website: "Dummy.com",
+    CvTempletnumber: templet
+  }
+
   const onFinish = (values) => {
-    if(draftData.edit)
-    {
+    if (draftData.edit) {
       dispatch(deleteCV(draftData.id));
     }
     const id = uuid().slice(0, 8);
@@ -97,6 +116,11 @@ function InputForm() {
     formRef.current?.setFieldsValue(draftData.cvData);
 
   };
+
+  const handelReset = () => {
+    formRef.current?.resetFields();
+     setItem({...dumyData});
+  }
 
   const handelDraft = () => {
     const id = uuid().slice(0, 8);
@@ -120,8 +144,8 @@ function InputForm() {
     handleCancel();
   }
 
-  const handelBack=()=>{
-    dispatch(setDraftCv({edit:false}));
+  const handelBack = () => {
+    dispatch(setDraftCv({ edit: false }));
     navigeate('/home')
   }
 
@@ -405,7 +429,7 @@ function InputForm() {
                 <Button type="primary" htmlType="submit">
                   Save
                 </Button>
-                <Button type="primary" htmlType="reset">
+                <Button type="primary" onClick={handelReset}>
                   Reset
                 </Button>
                 <Button onClick={handelDraft} type="primary" htmlType="reset">
@@ -419,7 +443,7 @@ function InputForm() {
           </Form>
         </div>
       </div>
-      <Modal width={800} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}  footer={[]} >
+      <Modal width={800} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={[]} >
         <div className='page'>
           <h1>Templets</h1>
           <Pagination onChange={handelChangeTemplets} defaultCurrent={templet} total={30} />
