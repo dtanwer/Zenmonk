@@ -3,9 +3,12 @@ import { auth } from '../../config/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLogOut } from '../../features/userSlice';
 import { signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
     const dispatch = useDispatch();
+    const navigate=useNavigate()
+
     const logOut = async () => {
         try {
             await signOut(auth);
@@ -25,6 +28,7 @@ function Home() {
             <h1>{user.displayName}</h1>
             <h1>{user.email}</h1>
             <img src={user.photoUrl} alt="User Img" />
+            <button onClick={()=>navigate('/message')}>Let's Chat</button>
 
         </div>
     )

@@ -1,24 +1,45 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { auth, googleProvider } from "../../config/firebase";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../../features/userSlice";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import './index.css';
 import { useNavigate } from "react-router-dom";
-
-import google from '../../icons/google.png'
+import { db } from "../../config/firebase";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import google from '../../icons/google.png';
+import { userPresent } from "../../utils/userPresent";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    let [users,setUsers]=useState([]);
+    const usersCollectionRef = collection(db, "users");
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const createUser = async (data,UserId) => {
+        try {
+            const res = await addDoc(usersCollectionRef, { email: data.email, UserId});
+            // console.log(res);
+        } catch (error) {
+            console.log(error);
+        }
+    };
     const signInWithGoogle = async () => {
         try {
             const res = await signInWithPopup(auth, googleProvider);
-            dispatch(setLogin(res._tokenResponse));
-            navigate('/home');
+            // console.log(res._tokenResponse)
+            const filterUser=userPresent(users, res._tokenResponse.email);
+            const UserId=Date.now();
+            if (filterUser.length === 0) {
+                createUser(res._tokenResponse,UserId);
+                dispatch(setLogin({email:res._tokenResponse.email,UserId}));
+            }
+            else {
+                // console.log(filterUser);
+                dispatch(setLogin(filterUser[0]));
+            }
+            navigate('/message');
         } catch (err) {
             console.error(err);
         }
@@ -27,13 +48,40 @@ function Login() {
         e.preventDefault();
         try {
             const res = await signInWithEmailAndPassword(auth, email, password);
-            console.log(res)
-            dispatch(setLogin(res._tokenResponse));
-            navigate('/home');
+            // console.log(res)
+            const UserId=Date.now();
+            const filterUser=userPresent(users, res._tokenResponse.email);
+            console.log(filterUser.length);
+            if (userPresent(users, res._tokenResponse.email).length === 0) {
+                createUser(res._tokenResponse,UserId);
+            }
+            else{
+
+                dispatch(setLogin(filterUser[0]));
+            }
+            navigate('/message');
         } catch (err) {
             console.error(err);
         }
     };
+
+    useEffect(() => {
+        const getUsers = async () => {
+            try {
+                const data = await getDocs(usersCollectionRef);
+                const res = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+                users = setUsers([...res]);
+            }
+            catch (error) {
+                console.log(error)
+            }
+        };
+        getUsers();
+        // console.log(users)
+        // console.log(userPresent(users,'tanwer644d@gmail.com'))
+    },[]);
+
+
     return (
         <div className='login'>
             <div className="left">
@@ -51,7 +99,7 @@ function Login() {
                     <div className="inputBox">
                         <form onSubmit={signIn}>
                             <div className="email">
-                                <input  className="input" placeholder=" Email.." onChange={(e) => setEmail(e.target.value)} required />
+                                <input className="input" placeholder=" Email.." onChange={(e) => setEmail(e.target.value)} required />
                             </div>
                             <div className="password">
                                 <input

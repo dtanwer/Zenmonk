@@ -5,6 +5,7 @@
 }
 .login .left{
     background-color: black;
+    background-color: #8888f9;
     color: white;
     text-align: center;
 }
@@ -26,6 +27,7 @@
 .box .heading{
     line-height: 0.5;
     margin-bottom: 30px;
+    color: #8888f9;
 }
 
 .box .inputBox{
@@ -49,6 +51,7 @@
     cursor: pointer;
     width: 100%;
     background-color: black;
+    background-color: #8888f9;
     color: white;
     height: 40px;
     font-size: 20px;
@@ -86,6 +89,7 @@
 
 .signUpText span{
     color: black;
+    color: #8888f9;
     font-weight: bold;
     cursor: pointer;
 }

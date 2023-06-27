@@ -1,6 +1,8 @@
 import { auth } from "../../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+import { db } from "../../config/firebase";
+import { collection, addDoc } from "firebase/firestore";
 import './index.css'
 import { useNavigate } from "react-router-dom";
 
@@ -10,12 +12,23 @@ export const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     // console.log(auth?.currentUser?.email);
+
+    const usersCollectionRef = collection(db, "users");
+
+    // const createUser = async (data) => {
+    //     try {
+    //         const res = await addDoc(usersCollectionRef, { firstName: data.firstName, photoUrl: data.photoUrl, email: data.email, id: Date.now() });
+    //         console.log(res);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
     const signIn = async (e) => {
         e.preventDefault();
         try {
             const res = await createUserWithEmailAndPassword(auth, email, password);
-            console.log(res)
-            navigate('/home')
+            // createUser(res.user);
+            // navigate('/message')
         } catch (err) {
             console.error(err);
         }
@@ -53,7 +66,7 @@ export const SignUp = () => {
                                     required
                                 />
                             </div>
-                            <button  type="submit"> Signin</button>
+                            <button type="submit"> Signin</button>
                         </form>
                     </div>
                     <div className="signUpText">
