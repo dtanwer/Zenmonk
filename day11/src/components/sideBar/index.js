@@ -7,8 +7,22 @@ import PersonIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Chat';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useDispatch } from 'react-redux';
+import { setLogOut } from '../../features/userSlice';
+import { auth } from '../../config/firebase';
+import { signOut } from 'firebase/auth';
 
 function SideBar() {
+  const dispatch = useDispatch();
+  const logOut = async () => {
+    try {
+      await signOut(auth);
+      dispatch(setLogOut());
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <div className='sideBar'>
       <div className="BarIcon">
@@ -22,7 +36,7 @@ function SideBar() {
       </div>
       <div className="footer">
         <p><SettingsIcon/></p>
-        <p><LogoutIcon/></p>
+        <p><LogoutIcon onClick={logOut}/></p>
       </div>
 
 

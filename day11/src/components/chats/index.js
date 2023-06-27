@@ -1,8 +1,8 @@
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './index.css'
 import UserCard from '../userCard';
 import SearchIcon from '@mui/icons-material/Search';
-import {db} from '../../config/firebase'
+import { db } from '../../config/firebase'
 import {
   collection,
   getDocs
@@ -12,7 +12,22 @@ import { useSelector } from 'react-redux';
 function Chats() {
   const [users, setUsers] = useState([]);
   const usersCollectionRef = collection(db, "users")
-  const sender=useSelector((state)=>state.user.userData)
+  const sender = useSelector((state) => state.user.userData)
+  const temp=users;
+  const [search, setSearch] = useState("");
+  const handelSearch = (e) => {
+    setSearch(e.target.value);
+    const filterData = temp.filter((item) => {
+      return item.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+    });
+    setUsers([...filterData]);
+
+    if(search.length===0)
+    {
+      // console.log('sssss')
+      getUsers()
+    }
+  }
   // const users=[
   //   {
   //     name:'deepak',
@@ -85,15 +100,20 @@ function Chats() {
   //   },
 
   // ]
+  const getUsers = async () => {
+    const data = await getDocs(usersCollectionRef);
+    setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
   useEffect(() => {
-    const getUsers = async () => {
-      const data = await getDocs(usersCollectionRef);
-      setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-
     getUsers();
   }, []);
-  console.log('first',sender)
+
+
+  // console.log('first', sender)
+
+  const data= search.length===0? temp:users;
+
+
   return (
     <div className='chats'>
       <div className="heading">
@@ -101,21 +121,21 @@ function Chats() {
         <p>People,Group,Messages</p>
       </div>
       <div className='onlineUser'>
-        <UserCard onlineCard={false} reciver={sender}/>
+        <UserCard onlineCard={false} reciver={sender} />
       </div>
       <div className="search">
         <span className='iconWithSearch'>
           <SearchIcon className='SearchIcon' />
-          <input type="text" placeholder=' Search People, Group, Message' />
+          <input type="text" onChange={handelSearch} placeholder=' Search People, Group, Message' />
         </span>
       </div>
       <div className="users">
         {
-          users.map((item, index) => {
-            if(item.id!==sender.id)
-            return (
-              <UserCard key={index} i={index} onlineCard={true} active={item.active} reciver={item} />
-            )
+          data?.map((item, index) => {
+            if (item.id !== sender.id)
+              return (
+                <UserCard key={index} i={index} onlineCard={true} active={item.active} reciver={item} />
+              )
           })
         }
       </div>

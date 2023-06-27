@@ -11,10 +11,11 @@ import { useSelector } from 'react-redux';
 import EmojiPicker from 'emoji-picker-react';
 import { getRoomId } from '../../utils/getRoomId';
 import { db } from '../../config/firebase';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import {
   collection,
   getDocs,
-  addDoc,query,orderBy,limit,
+  addDoc, query, orderBy, limit,
   updateDoc,
   deleteDoc,
   doc,
@@ -24,8 +25,8 @@ import {
 function MessageBody({ group }) {
   const [message, setMessage] = useState("");
   const [showEmojis, setShowEmojis] = useState(false);
-  const [text,setText]=useState([]);
-
+  const [text, setText] = useState([]);
+  const [isChange, setIsChange] = useState(true)
   const roomCollectionRef = collection(db, "room");
   // roomCollectionRef.orderBy("Time").limit(3);
 
@@ -41,7 +42,7 @@ function MessageBody({ group }) {
   const sender = useSelector((state) => state.user.userData);
   const reciver = useSelector((state) => state.user.reciver);
   // console.log(sender.UserId, reciver.UserId)
-  const roomId = useSelector((state)=>state.user.roomId);
+  const roomId = useSelector((state) => state.user.roomId);
   console.log(roomId)
   // console.log('Room Id :', roomId)
 
@@ -69,6 +70,9 @@ function MessageBody({ group }) {
   //   ]
   // }
 
+  setTimeout(() => {
+    setIsChange(!isChange);
+  }, 2000);
 
   const groupDetails = {
     member: 6,
@@ -76,7 +80,7 @@ function MessageBody({ group }) {
   }
   const sendMsg = async (e) => {
     e.preventDefault();
-    await addDoc(roomCollectionRef, { roomId, Id: sender.UserId, message, Time: serverTimestamp()});
+    await addDoc(roomCollectionRef, { roomId, Id: sender.UserId, message, Time: serverTimestamp() });
     setMessage("");
   }
 
@@ -88,18 +92,18 @@ function MessageBody({ group }) {
         orderBy("Time", "asc"),
         limit(50)
       );
-  
+
       const data = await getDocs(q);
-      const res=data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      const res = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
       // console.log(res)
-      const filterData=res.filter((item)=>item.roomId===roomId);
+      const filterData = res.filter((item) => item.roomId === roomId);
       // const soredData=filterData.sort((date1, date2) => date2.Time - date1.Time);
       setText([...filterData]);
     };
 
     getUsers();
     // console.log(text);
-  },[message])
+  }, [message,isChange])
 
 
 
@@ -125,14 +129,15 @@ function MessageBody({ group }) {
       </div>
       <div className="messages">
         {
-          text.map((item, index) => {
+          text?.map((item, index) => {
+            // console.log();
             return (
               <div className='myDiv'>
                 {
-                  sender.UserId===item.Id?<Message data={item.sender} sender={true} time={item.time} msg={item.message} />:
-                  <Message data={item.reciverMsg} sender={false} time={item.time} msg={item.message} />
+                  sender?.UserId === item?.Id ? <Message data={item.sender} sender={true} time={item?.Time?.seconds} msg={item?.message} /> :
+                    <Message data={item?.reciverMsg} sender={false} time={item?.Time?.seconds} msg={item?.message} />
                 }
-                
+
               </div>
             )
           })
