@@ -59,7 +59,7 @@ function UserCard({ onlineCard,active,reciver,key,i }) {
                 {
                     onlineCard && <div className="msg">
                         {
-                            lastMsg===0?"":<span>{userMsg[lastMsg-1].message}</span>
+                            lastMsg===0?"":<span>{userMsg[lastMsg-1].message.slice(0, 40)}</span>
                         }
                         
                         

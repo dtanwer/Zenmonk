@@ -6,7 +6,7 @@ const initialState={
     reciver:{},
     currentWindowMsg:{},
     currentSenderIndex:-1,
-    roomId:'',
+    roomId:'1',
     msg:[],
 }
 

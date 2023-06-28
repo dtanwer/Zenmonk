@@ -6,6 +6,7 @@ import MicOutlinedIcon from '@mui/icons-material/MicOutlined';
 import NotificationsActiveRoundedIcon from '@mui/icons-material/NotificationsActiveRounded';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import Message from '../messages';
 import { useDispatch, useSelector } from 'react-redux';
 import EmojiPicker from 'emoji-picker-react';
@@ -14,6 +15,7 @@ import { db } from '../../config/firebase';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { getDate } from '../../utils/getDate';
 import { setMsg } from '../../features/userSlice';
+import {deleteChats} from '../../utils/deleteChats'
 // import myTypingIcon from '../../icons/'
 import {
   collection,
@@ -108,11 +110,12 @@ function MessageBody({ group }) {
   }
 
   useEffect(() => {
-
-
-    const unsub = onSnapshot(doc(db, "users", reciver?.id), (doc) => {
-      setTyping(doc.data()?.rooms[roomId]);
-    });
+    if(roomId!=='1'){
+      const unsub = onSnapshot(doc(db, "users", reciver?.id), (doc) => {
+        setTyping(doc.data()?.rooms[roomId]);
+      });
+    }
+    
 
 
 
@@ -153,6 +156,12 @@ function MessageBody({ group }) {
 
   }, [roomId])
 
+  const handelClear= async ()=>{
+    text?.map((item)=>{
+      deleteChats(item?.id);
+    })
+  }
+
 
   return (
     <div className='msgBody'>
@@ -176,7 +185,7 @@ function MessageBody({ group }) {
         </div>
         <div className="icons">
           <NotificationsActiveRoundedIcon className='icon' />
-          <MoreHorizOutlinedIcon className='icon' />
+          <DeleteOutlineIcon onClick={handelClear} className='icon'/>
         </div>
       </div>
       <div className="messages">

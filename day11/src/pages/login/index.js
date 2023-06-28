@@ -35,7 +35,7 @@ function Login() {
             const UserId=Date.now();
             if (filterUser.length === 0) {
                 createUser(res._tokenResponse,UserId,res._tokenResponse.firstName,true);
-                dispatch(setLogin({email:res._tokenResponse.email,UserId,name:res._tokenResponse.firstName}));
+                dispatch(setLogin({email:res._tokenResponse.email,UserId,name:res._tokenResponse.firstName,online:true}));
             }
             else {
                 // console.log(filterUser);
