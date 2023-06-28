@@ -10,7 +10,9 @@ import { useNavigate } from "react-router-dom";
 export const SignUp = () => {
     const navigate = useNavigate()
     const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+    const [Confpassword, setConfPassword] = useState("");
     // console.log(auth?.currentUser?.email);
 
     const usersCollectionRef = collection(db, "users");
@@ -23,15 +25,31 @@ export const SignUp = () => {
     //         console.log(error);
     //     }
     // };
+
+    const createUser = async (data, UserId, name) => {
+        try {
+            const res = await addDoc(usersCollectionRef, { email: data.email, UserId, name ,online:false,rooms:{}});
+            // console.log(res);
+        } catch (error) {
+            console.log(error);
+        }
+    };
     const signIn = async (e) => {
         e.preventDefault();
-        try {
-            const res = await createUserWithEmailAndPassword(auth, email, password);
-            // createUser(res.user);
-            // navigate('/message')
-        } catch (err) {
-            console.error(err);
+        if (password !== Confpassword) {
+            alert("Confirm Password did not match!!");
         }
+        else {
+            const UserId=Date.now();
+            try {
+                const res = await createUserWithEmailAndPassword(auth, email, password);
+                createUser({email},UserId,name);
+                navigate('/message')
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
     };
     return (
         <div className="signUp">
@@ -46,6 +64,9 @@ export const SignUp = () => {
                     </div>
                     <div className="inputBox">
                         <form action="" onSubmit={signIn}>
+                            <div className="name">
+                                <input placeholder="Name" className="input" onChange={(e) => setName(e.target.value)} />
+                            </div>
                             <div className="email">
                                 <input placeholder="Email.." className="input" onChange={(e) => setEmail(e.target.value)} />
                             </div>
@@ -62,7 +83,7 @@ export const SignUp = () => {
                                     className="input"
                                     type="password"
                                     placeholder=" Confirm Password.."
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    onChange={(e) => setConfPassword(e.target.value)}
                                     required
                                 />
                             </div>

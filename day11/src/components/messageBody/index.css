@@ -61,6 +61,9 @@
     margin-top: 30px;
     margin-left: 40px;
 }
+.senderDetails .img{
+   position: relative;
+}
 .senderDetails .nameDetails{
     line-height: 0.5;
     margin-top: 40px;
@@ -80,4 +83,33 @@
     position: absolute;
     bottom: 100px;
     right: 20px;
+}
+
+.senderDetails .img .online{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(76, 213, 113);
+    right: 70px;
+    border-radius: 100%;
+    bottom: 30px;
+}
+.senderDetails .img .offline{
+    
+    background-color: red;
+    
+}
+/* .date{
+    position: absolute;
+    top: 150px;
+    left: 67%;
+    z-index: 2;
+} */
+.myDiv .myDate{
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.myTyping{
+    position: absolute;
 }

@@ -6,9 +6,10 @@ import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import './index.css';
 import { useNavigate } from "react-router-dom";
 import { db } from "../../config/firebase";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs} from "firebase/firestore";
 import google from '../../icons/google.png';
 import { userPresent } from "../../utils/userPresent";
+import { updateOnline } from "../../utils/updateOnline";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -17,10 +18,10 @@ function Login() {
     const usersCollectionRef = collection(db, "users");
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const createUser = async (data,UserId) => {
+    const createUser = async (data,UserId,name,online=false) => {
         try {
-            const res = await addDoc(usersCollectionRef, { email: data.email, UserId});
-            // console.log(res);
+            const res = await addDoc(usersCollectionRef, { email: data.email, UserId,name,online,rooms:{dummy:1}});
+            // console.log('this',res);
         } catch (error) {
             console.log(error);
         }
@@ -29,15 +30,17 @@ function Login() {
         try {
             const res = await signInWithPopup(auth, googleProvider);
             // console.log(res._tokenResponse)
+            // console.log(res);
             const filterUser=userPresent(users, res._tokenResponse.email);
             const UserId=Date.now();
             if (filterUser.length === 0) {
-                createUser(res._tokenResponse,UserId);
-                dispatch(setLogin({email:res._tokenResponse.email,UserId}));
+                createUser(res._tokenResponse,UserId,res._tokenResponse.firstName,true);
+                dispatch(setLogin({email:res._tokenResponse.email,UserId,name:res._tokenResponse.firstName}));
             }
             else {
                 // console.log(filterUser);
-                dispatch(setLogin(filterUser[0]));
+                updateOnline(filterUser[0].id,true);
+                dispatch(setLogin({...filterUser[0],online:true}));
             }
             navigate('/message');
         } catch (err) {
@@ -51,13 +54,13 @@ function Login() {
             // console.log(res)
             const UserId=Date.now();
             const filterUser=userPresent(users, res._tokenResponse.email);
-            console.log(filterUser.length);
+            // console.log(filterUser.length);
             if (userPresent(users, res._tokenResponse.email).length === 0) {
-                createUser(res._tokenResponse,UserId);
+                createUser(res._tokenResponse,UserId,true);
             }
             else{
-
-                dispatch(setLogin(filterUser[0]));
+                updateOnline(filterUser[0].id,true);
+                dispatch(setLogin({...filterUser[0],online:true}));
             }
             navigate('/message');
         } catch (err) {
@@ -65,6 +68,7 @@ function Login() {
         }
     };
 
+   
     useEffect(() => {
         const getUsers = async () => {
             try {

@@ -6,7 +6,8 @@ const initialState={
     reciver:{},
     currentWindowMsg:{},
     currentSenderIndex:-1,
-    roomId:''
+    roomId:'',
+    msg:[],
 }
 
 const userSlice=createSlice({
@@ -32,9 +33,13 @@ const userSlice=createSlice({
         },
         setRoomId:(state,action)=>{
             state.roomId=action.payload;
+        },
+        setMsg:(state,action)=>{
+            const myMsg=action.payload;
+            state.msg=[...myMsg];
         }
     }
 })
 
-export const {setLogOut,setLogin,setRoomId,setCurrentWindowMsg,setCurrentSenderIndex,setReciver} = userSlice.actions;
+export const {setLogOut,setLogin,setRoomId,setMsg,setCurrentWindowMsg,setCurrentSenderIndex,setReciver} = userSlice.actions;
 export default userSlice.reducer;

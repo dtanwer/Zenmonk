@@ -1,12 +1,15 @@
 export const  getTime=(timestamp)=> {
     const date = new Date(timestamp*1000);
-    console.log(date)
+    // console.log(date)
     let hours = date.getHours();
     let minutes = date.getMinutes();
+    let day = date.getDay();
     const ampm = hours >= 12 ? 'PM' : 'AM';
+
+    // console.log('day is ',day)
   
     hours = hours % 12;
-    hours = hours ? hours : 12; // Convert 0 to 12
+    hours = hours ? hours : 12; 
   
     minutes = minutes < 10 ? '0' + minutes : minutes;
   

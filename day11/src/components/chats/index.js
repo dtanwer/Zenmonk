@@ -5,15 +5,17 @@ import SearchIcon from '@mui/icons-material/Search';
 import { db } from '../../config/firebase'
 import {
   collection,
-  getDocs
+  getDocs,
+  onSnapshot
 } from "firebase/firestore";
 import { useSelector } from 'react-redux';
 
 function Chats() {
   const [users, setUsers] = useState([]);
   const usersCollectionRef = collection(db, "users")
-  const sender = useSelector((state) => state.user.userData)
-  const temp=users;
+  const sender = useSelector((state) => state.user.userData);
+  const msg=useSelector((state)=>state.user.msg);
+  const temp = users;
   const [search, setSearch] = useState("");
   const handelSearch = (e) => {
     setSearch(e.target.value);
@@ -22,8 +24,7 @@ function Chats() {
     });
     setUsers([...filterData]);
 
-    if(search.length===0)
-    {
+    if (search.length === 0) {
       // console.log('sssss')
       getUsers()
     }
@@ -105,14 +106,18 @@ function Chats() {
     setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
   useEffect(() => {
-    getUsers();
+    const unsubscribe = onSnapshot(usersCollectionRef, (QuerySnapshot) => {
+      let users = [];
+      QuerySnapshot.forEach((doc) => {
+        users.push({ ...doc.data(), id: doc.id });
+      });
+      setUsers(users);
+    });
+    return () => unsubscribe;
+    // getUsers();
   }, []);
 
-
-  // console.log('first', sender)
-
-  const data= search.length===0? temp:users;
-
+  // console.log("i m sender",sender)
 
   return (
     <div className='chats'>
@@ -131,7 +136,7 @@ function Chats() {
       </div>
       <div className="users">
         {
-          data?.map((item, index) => {
+          users?.map((item, index) => {
             if (item.id !== sender.id)
               return (
                 <UserCard key={index} i={index} onlineCard={true} active={item.active} reciver={item} />

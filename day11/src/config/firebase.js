@@ -4,13 +4,13 @@ import { getAnalytics } from "firebase/analytics";
 import { GoogleAuthProvider,getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 const firebaseConfig = {
-  apiKey: "AIzaSyD6XcW697uWHPnNtHjRLtEnuFuvEONRK6A",
-  authDomain: "messageapp-87770.firebaseapp.com",
-  projectId: "messageapp-87770",
-  storageBucket: "messageapp-87770.appspot.com",
-  messagingSenderId: "1045584952648",
-  appId: "1:1045584952648:web:74fcdd523c9a24126bc77d",
-  measurementId: "G-ZNKEH321BV"
+  apiKey: "AIzaSyCDYTpOxKqKVlUyIcoxeGs5Pf3sgxj6IGE",
+  authDomain: "mymsg-4004f.firebaseapp.com",
+  projectId: "mymsg-4004f",
+  storageBucket: "mymsg-4004f.appspot.com",
+  messagingSenderId: "881831928368",
+  appId: "1:881831928368:web:939f7bde1f7e14ff7803f5",
+  measurementId: "G-5MJWMTZHL4"
 };
 
 // Initialize Firebase

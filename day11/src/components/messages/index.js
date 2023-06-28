@@ -1,9 +1,9 @@
 import React from 'react';
 import './index.css';
 import {getTime} from '../../utils/getTime'
+import { getDate } from '../../utils/getDate';
 
 function Message({ sender, data, time, msg }) {
-    // console.log(time)
     const myTime=getTime(time);
     return (
         <>
