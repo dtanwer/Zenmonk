@@ -4,25 +4,18 @@ import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 import EmojiEmotionsOutlinedIcon from '@mui/icons-material/EmojiEmotionsOutlined';
 import MicOutlinedIcon from '@mui/icons-material/MicOutlined';
 import NotificationsActiveRoundedIcon from '@mui/icons-material/NotificationsActiveRounded';
-import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import Message from '../messages';
 import { useDispatch, useSelector } from 'react-redux';
 import EmojiPicker from 'emoji-picker-react';
-import { getRoomId } from '../../utils/getRoomId';
 import { db } from '../../config/firebase';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { getDate } from '../../utils/getDate';
 import { setMsg } from '../../features/userSlice';
 import {deleteChats} from '../../utils/deleteChats'
-// import myTypingIcon from '../../icons/'
 import {
   collection,
-  getDocs,
   addDoc, query, orderBy, limit, onSnapshot,
-  updateDoc,
-  deleteDoc,
   doc,
   serverTimestamp,
 } from "firebase/firestore";
@@ -33,9 +26,9 @@ import { updateRead } from '../../utils/updateRead';
 function MessageBody({ group }) {
   const [message, setMessage] = useState("");
   const [showEmojis, setShowEmojis] = useState(false);
-  const [typing, setTyping] = useState(false);
+  // const [typing, setTyping] = useState(false);
   const [text, setText] = useState([]);
-  const [isChange, setIsChange] = useState(true)
+  const [seen, setSeen] = useState(false)
   // const [date, setDates] = useState('T')
   let date='T';
   const roomCollectionRef = collection(db, "room");
@@ -54,6 +47,7 @@ function MessageBody({ group }) {
   const users = useSelector((state) => state.user.currentWindowMsg);
   const sender = useSelector((state) => state.user.userData);
   const reciver = useSelector((state) => state.user.reciver);
+  let typing=false;
   // console.log(sender.UserId, reciver.UserId)
   const roomId = useSelector((state) => state.user.roomId);
 
@@ -62,42 +56,19 @@ function MessageBody({ group }) {
   const handelOnChange = (e) => {
 
     setMessage(e.target.value);
-    updateRooms(sender.id, roomId, true)
-    setTimeout(() => {
-      updateRooms(sender.id, roomId, false)
-    }, 3000);
+    console.log(typing,'typing   ------------')
+    if(typing === false)
+    {
+      // updateRooms(sender.id, roomId, true)
+      // console.log('i m inside if ',typing)zz
+      typing=true;
+    }
+    // setTimeout(() => {
+    //   updateRooms(sender.id, roomId, false)
+    //   typing=false
+    // }, 3000);
     
   }
-
-  // console.log('Room Id :', roomId)
-
-  // console.log(users);
-  // const users = useSelector((state) => state.user.currentWindowMsg);
-  // {
-  //   name: 'deepak',
-  //   active: false,
-  //   message: [
-  //     {
-  //       time: '12:00 AM',
-  //       sender: ['Hii', 'I am Demo Msg'],
-  //       reciverMsg: ['hellow', 'How are You!!']
-  //     },
-  //     {
-  //       time: '1:00 PM',
-  //       sender: ['Hii', 'I am Demo Msg'],
-  //       reciverMsg: ['hellow', 'How are You!!']
-  //     },
-  //     {
-  //       time: '3:00 PM',
-  //       sender: ['Hii', 'I am Demo Msg'],
-  //       reciverMsg: ['hellow', 'How are You!!']
-  //     },
-  //   ]
-  // }
-
-  // setTimeout(() => {
-  //   setIsChange(!isChange);
-  // }, 2000);
 
   const groupDetails = {
     member: 6,
@@ -109,33 +80,20 @@ function MessageBody({ group }) {
     setMessage("");
   }
 
-  useEffect(() => {
+  useEffect(()=>{
     if(roomId!=='1'){
       const unsub = onSnapshot(doc(db, "users", reciver?.id), (doc) => {
-        setTyping(doc.data()?.rooms[roomId]);
+        // typing=doc.data()?.rooms[roomId];
+        console.log('i m use effect')
       });
+
+      return () => unsub;
     }
+  },[])
+
+  useEffect(() => {
+   
     
-
-
-
-    // const getUsers = async () => {
-    //   const q = query(
-    //     collection(db, "room"),
-    //     orderBy("Time", "asc"),
-    //     limit(50)
-    //   );
-
-    //   const data = await getDocs(q);
-    //   const res = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-    //   // console.log(res)
-    //   const filterData = res.filter((item) => item.roomId === roomId);
-    //   // const soredData=filterData.sort((date1, date2) => date2.Time - date1.Time);
-    //   setText([...filterData]);
-    // };
-
-    // getUsers();
-    // console.log(text);
     const q = query(
       collection(db, "room"),
       orderBy("Time"),
@@ -147,10 +105,13 @@ function MessageBody({ group }) {
         messages.push({ ...doc.data(), id: doc.id });
       });
       dispatch(setMsg(messages));
+      console.log(message,'my Message   !!!!!!!!!!!!!!');
       setText(messages.filter(item => item.roomId === roomId));
 
     });
     return () => unsubscribe;
+
+
 
 
 
@@ -199,6 +160,12 @@ function MessageBody({ group }) {
             if(item?.id && item.Id!==sender.UserId){
 
               updateRead(item?.id);
+              setSeen(true);
+
+              setTimeout(() => {
+                setSeen(false);
+              }, 1000);
+
             }
             // console.log(date,index);
             return (

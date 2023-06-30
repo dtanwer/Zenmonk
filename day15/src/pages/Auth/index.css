@@ -1,0 +1,15 @@
+.auth{
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    height: 100vh;
+}
+.auth .left{
+    background-color:rgb(233, 241, 250);
+    text-align: center;
+}
+.auth .left img{
+    margin-top: 25%;
+}
+.auth .right{
+    position: relative;
+}

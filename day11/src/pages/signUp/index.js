@@ -65,10 +65,10 @@ export const SignUp = () => {
                     <div className="inputBox">
                         <form action="" onSubmit={signIn}>
                             <div className="name">
-                                <input placeholder="Name" className="input" onChange={(e) => setName(e.target.value)} />
+                                <input type="text" placeholder="Name" className="input" onChange={(e) => setName(e.target.value)} required />
                             </div>
                             <div className="email">
-                                <input placeholder="Email.." className="input" onChange={(e) => setEmail(e.target.value)} />
+                                <input type="email" placeholder="Email.." className="input" onChange={(e) => setEmail(e.target.value)} required />
                             </div>
                             <div className="password">
                                 <input
@@ -76,6 +76,7 @@ export const SignUp = () => {
                                     type="password"
                                     placeholder=" Password.."
                                     onChange={(e) => setPassword(e.target.value)}
+                                    required
                                 />
                             </div>
                             <div className="confirmPassword">

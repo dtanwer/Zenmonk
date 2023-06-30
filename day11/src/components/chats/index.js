@@ -25,82 +25,10 @@ function Chats() {
     setUsers([...filterData]);
 
     if (search.length === 0) {
-      // console.log('sssss')
       getUsers()
     }
   }
-  // const users=[
-  //   {
-  //     name:'deepak',
-  //     active:false,
-  //     message:[
-  //       {
-  //         time:'12:00 AM',
-  //         sender:['Hii','I am Demo Msg'],
-  //         reciverMsg:['hellow','How are You!!']
-  //       },
-  //       {
-  //         time:'1:00 PM',
-  //         sender:['Hii','I am Demo Msg'],
-  //         reciverMsg:['hellow','How are You!!']
-  //       },
-  //       {
-  //         time:'3:00 PM',
-  //         sender:['Hii','I am Demo Msg'],
-  //         reciverMsg:['hellow','How are You!!']
-  //       },
-  //     ]
-  //   },
-  //   {
-  //     name:'deepak',
-  //     active:false,
-  //     message:[
-  //       {
-  //         time:'12:00 AM',
-  //         sender:['Hhellow','Demo Msg'],
-  //         reciverMsg:['hellow','I am Fine!!']
-  //       },
 
-  //     ]
-  //   },
-  //   {
-  //     name:'deepak',
-  //     active:false,
-  //     message:[
-  //       {
-  //         time:'1:00 AM',
-  //         sender:['Hii','I am Demo Msg'],
-  //         reciverMsg:['hell','How are You!!']
-  //       },
-
-  //     ]
-  //   },
-  //   {
-  //     name:'deepak',
-  //     active:false,
-  //     message:[
-  //       {
-  //         time:'12:00 AM',
-  //         sender:['Hii','I am Demo Msg'],
-  //         reciverMsg:['hellow','How are You!!']
-  //       },
-
-  //     ]
-  //   },
-  //   {
-  //     name:'deepak',
-  //     active:false,
-  //     message:[
-  //       {
-  //         time:'12:00 AM',
-  //         sender:['Hii','I am Demo Msg'],
-  //         reciverMsg:['hellow','How are You!!']
-  //       },
-
-  //     ]
-  //   },
-
-  // ]
   const getUsers = async () => {
     const data = await getDocs(usersCollectionRef);
     setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));

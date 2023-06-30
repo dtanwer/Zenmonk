@@ -18,10 +18,10 @@ function Login() {
     const usersCollectionRef = collection(db, "users");
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const createUser = async (data,UserId,name,online=false) => {
         try {
             const res = await addDoc(usersCollectionRef, { email: data.email, UserId,name,online,rooms:{dummy:1}});
-            // console.log('this',res);
         } catch (error) {
             console.log(error);
         }
@@ -29,8 +29,6 @@ function Login() {
     const signInWithGoogle = async () => {
         try {
             const res = await signInWithPopup(auth, googleProvider);
-            // console.log(res._tokenResponse)
-            // console.log(res);
             const filterUser=userPresent(users, res._tokenResponse.email);
             const UserId=Date.now();
             if (filterUser.length === 0) {
@@ -38,7 +36,6 @@ function Login() {
                 dispatch(setLogin({email:res._tokenResponse.email,UserId,name:res._tokenResponse.firstName,online:true}));
             }
             else {
-                // console.log(filterUser);
                 updateOnline(filterUser[0].id,true);
                 dispatch(setLogin({...filterUser[0],online:true}));
             }
@@ -51,10 +48,8 @@ function Login() {
         e.preventDefault();
         try {
             const res = await signInWithEmailAndPassword(auth, email, password);
-            // console.log(res)
             const UserId=Date.now();
             const filterUser=userPresent(users, res._tokenResponse.email);
-            // console.log(filterUser.length);
             if (userPresent(users, res._tokenResponse.email).length === 0) {
                 createUser(res._tokenResponse,UserId,true);
             }
@@ -81,8 +76,6 @@ function Login() {
             }
         };
         getUsers();
-        // console.log(users)
-        // console.log(userPresent(users,'tanwer644d@gmail.com'))
     },[]);
 
 
@@ -103,7 +96,7 @@ function Login() {
                     <div className="inputBox">
                         <form onSubmit={signIn}>
                             <div className="email">
-                                <input className="input" placeholder=" Email.." onChange={(e) => setEmail(e.target.value)} required />
+                                <input type="email" className="input" placeholder=" Email.." onChange={(e) => setEmail(e.target.value)} required />
                             </div>
                             <div className="password">
                                 <input

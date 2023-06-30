@@ -5,7 +5,6 @@ import Login from './pages/login';
 import Protected from './components/Protected';
 import { SignUp } from './pages/signUp';
 import Chat from './pages/Chat';
-import { useState } from 'react';
 
 function App() {
   const publicRouter = [

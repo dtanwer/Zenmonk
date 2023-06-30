@@ -1,0 +1,8 @@
+.friendRequest{
+    background-color: #ffff;
+    width: 400px;
+    height: 200px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 10px;
+    margin-top: 30px;
+}

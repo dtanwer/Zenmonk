@@ -6,22 +6,16 @@ import { getRoomId } from '../../utils/getRoomId';
 import { updateRooms } from '../../utils/updateRooms';
 import { getTime } from '../../utils/getTime';
 
-function UserCard({ onlineCard,active,reciver,key,i }) {
+function UserCard({ onlineCard,reciver,i }) {
      const dispatch=useDispatch();
      const index=useSelector((state)=>state.user.currentSenderIndex);
      const sender=useSelector((state)=>state.user.userData);
      const msg=useSelector((state)=>state.user.msg);
-    //  console.log(reciver)
     const tempRoomId=getRoomId(reciver?.UserId,sender?.UserId)
     const userMsg=msg.filter((item)=>item.roomId===tempRoomId)
     const UnReadMsg=msg.filter((item)=>item.roomId===tempRoomId && !item?.read && item.Id!==sender.UserId)
     const lastMsg=userMsg.length;
-    const data = {
-        time: '10:22 PM',
-        name: 'Deepak',
-        msg: 'I am Fine,What about You ?',
-        cnt: 3
-    }
+
     const handelCLick= async ()=>{
         if(onlineCard)
         {
@@ -32,10 +26,9 @@ function UserCard({ onlineCard,active,reciver,key,i }) {
             dispatch(setRoomId(currentroomId));
             updateRooms(sender?.id,currentroomId,false);
 
-            // console.log(getRoomId(reciver.UserId,sender.UserId));
+        
         }
 
-        // console.log(reciver.online);
     }
     return (
         <div onClick={handelCLick} className={ i===index? 'userCard currentWindow':'userCard'}>

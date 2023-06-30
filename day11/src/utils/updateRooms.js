@@ -10,5 +10,6 @@ export const updateRooms = async (id, roomId, status) => {
         const userDoc = doc(db, "users", id);
         const newFields = { rooms: { [roomId]: status } };
         await updateDoc(userDoc, newFields);
+        console.log("updating room dashdahahsdk");
     }
 };
