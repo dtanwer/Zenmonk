@@ -5,6 +5,8 @@ const initialState={
     userData:{},
     reciver:{},
     allUsers:[],
+    reciver:{},
+    currentRoom:"-1"
 }
 
 const authSlice=createSlice({
@@ -22,9 +24,15 @@ const authSlice=createSlice({
         },
         setUsers:(state,action)=>{
             state.allUsers=action.payload;
+        },
+        setReciver:(state,action)=>{
+            state.reciver=action.payload;
+        },
+        setCurrentRoom:(state,action)=>{
+            state.currentRoom=action.payload;
         }
     }
 })
 
-export const {setLogOut,setLogin,setUsers} = authSlice.actions;
+export const {setLogOut,setLogin,setUsers,setReciver,setCurrentRoom} = authSlice.actions;
 export default authSlice.reducer;

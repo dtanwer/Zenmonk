@@ -1,0 +1,36 @@
+.inputComment input{
+    font-size: 20px;
+    padding: 20px;
+    width: 400px;
+    border-radius: 20px;
+}
+.inputComment{
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+}
+.inputComment form{
+    display: flex;
+    justify-content:space-around;
+    gap: 20px;
+}
+.inputComment form button{
+   font-size: 30px;
+   background-color: white;
+   border: none;
+   color: rgb(0, 85, 255);
+   font-weight: bold;
+}
+.inputComment form button:disabled{
+   color: grey;
+}
+.inputComment .icon{
+   font-size: 60px;
+   display: flex;
+   margin-top: 10px;
+
+}
+.emoji{
+    position: absolute;
+    top: -470px;
+}

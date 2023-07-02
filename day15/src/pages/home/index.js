@@ -4,36 +4,29 @@ import Navbar from '../../components/Navbar'
 import './index.css';
 import CreatePost from '../../components/CreatePost';
 import PostCard from '../../components/postCard';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import FriendList from '../../components/FriendList';
 import FriendRequest from '../../components/friendRequest';
+import PostList from '../../components/PostList';
 function Home() {
-    // const user=useSelector(state=>state.auth.userData)
-    const data=[1,2,3,4,5];
   return (
     <div className='Home'>
         <Navbar/>
 
         <div className="container">
-          <div className="sidebar">
+          {/* <div className="sidebar">
 
             <div className="newFeed">
               
-            </div> 
-            <div className="newFeed">
-              
-            </div> 
+            </div>  
 
-          </div>
+          </div> */}
           <div className="posts">
             <CreatePost/>
-            {
-              data.map((item)=><PostCard key={item}/>)
-            }
-          
+           <PostList/>
           </div>
           <div className="friends">
             <FriendList/>
-            <FriendRequest/>
           </div>
         </div>
 

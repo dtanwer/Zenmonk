@@ -1,0 +1,66 @@
+.chatBody{
+    width: 500px;
+    height: 730px;
+    background-color: white;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    right: 28%;
+    top: 15%;
+    z-index: 2;
+}
+.chatBody .msgInput{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.chatBody .header{
+    display: flex;
+    /* padding: 15px; */
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgb(225, 225, 240);
+}
+.chatBody .header .close{
+    cursor: pointer;
+    text-align: end;
+    color: rgb(152, 155, 158);
+    width: 100%;
+}
+.chatBody .header .close .icon{
+   padding-top: 15px;
+   margin-right: 20px;
+   font-size: 40px;
+}
+.reciverStatus p
+{
+    display: flex;
+    font-size: 15px;
+    color: rgb(186, 193, 199);
+}
+.reciverStatus p .icon{
+    
+    font-size: 20px;
+    color: rgb(254, 148, 49);
+}
+.reciverStatus p .online{
+    color: rgb(16, 216, 118);
+}
+.chatBody .header .reciverDetails{
+    display: flex;
+    gap: 20px;
+}
+.chatBody .header .reciverDetails img{
+    height: 70px;
+    width: 70px;
+    border-radius: 70px;
+}
+.chatBody .header .reciverDetails div span{
+    display: flex;
+    color: rgb(30, 116, 253);
+    font-size: 25px;
+    font-weight: bolder;
+    line-height: 0.2;
+    margin-top: 20px;
+}
+

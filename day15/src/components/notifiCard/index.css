@@ -1,0 +1,23 @@
+.notifiCard{
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 2px solid rgb(190, 190, 190);
+}
+
+.notifiCard .imgWithName{
+    display: flex;
+    gap: 20px;
+}
+.notifiCard .imgWithName img{
+    height: 60px;
+    width: 60px;
+    border-radius: 60px;
+}
+.notifiCard .comment{
+    line-height: 0.5;
+}
+.notifiCard .comment span{
+    font-weight: bold;
+}

@@ -1,0 +1,41 @@
+.friendCard{
+    display: flex;
+    margin: 20px;
+    margin-top: 1px;
+    margin-bottom: 5px;
+    height: 70px;
+    /* background-color: red; */
+    padding: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    cursor: pointer;
+    color: rgb(175, 180, 184);
+
+}
+.friendCard .status{
+    text-align: end;
+    width: 100%;
+}
+.friendCard .status .icon{
+    margin-top: 20px;
+    color: rgb(254, 148, 49)
+}
+.friendCard .status .online{
+    margin-top: 20px;
+    color: rgb(16, 216, 118)
+}
+.userDetails img{
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+}
+.userDetails{
+   display: flex;
+   justify-content: space-between;
+   gap: 20px;
+}
+.userDetails span{
+    font-size: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+}

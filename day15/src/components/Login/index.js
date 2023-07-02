@@ -1,14 +1,15 @@
 import './index.css'
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { signInWithGoogle, signInWithEmailPassword } from '../../utils/signIn';
 import { userPresent } from '../../utils/userPresent';
 import { createUserInDataBase } from '../../utils/createUser';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLogin, setUsers } from '../../features/authSlice';
-import { getDocs,collection} from 'firebase/firestore';
+import { onSnapshot, collection } from 'firebase/firestore';
 import { db } from '../../config/firebase';
+import {updateOnline} from '../../utils/updateOnline'
 
 
 
@@ -25,13 +26,14 @@ const Login = ({ setlogin }) => {
       const res = await signInWithEmailPassword(email, password)
       const UserId = Date.now();
       const filterUser = userPresent(users, res._tokenResponse.email);
+      console.log(res._tokenResponse);
       if (filterUser.length === 0) {
-        createUserInDataBase(res._tokenResponse, UserId,res._tokenResponse.firstName, true);
-        dispatch(setLogin({ email: res._tokenResponse.email, UserId, name: res._tokenResponse.firstName, online: true }));
+        createUserInDataBase(res._tokenResponse, UserId, res._tokenResponse.firstName, true);
+        dispatch(setLogin({ email: res._tokenResponse.email,imgUrl:res._tokenResponse.photoUrl, UserId, name: res._tokenResponse.firstName, online: true,notification:[]}));
 
       }
       else {
-        // updateOnline(filterUser[0].id, true);
+        updateOnline(filterUser[0].id, true);
         dispatch(setLogin({ ...filterUser[0], online: true }));
       }
       setEmail('');
@@ -51,6 +53,7 @@ const Login = ({ setlogin }) => {
         dispatch(setLogin({ email: res._tokenResponse.email, UserId, name: res._tokenResponse.firstName, online: true }));
       }
       else {
+        updateOnline(filterUser[0].id, true);
         dispatch(setLogin({ ...filterUser[0], online: true }));
       }
 
@@ -61,18 +64,16 @@ const Login = ({ setlogin }) => {
 
   const usersCollectionRef = collection(db, "users");
   useEffect(() => {
-    const getUsers = async () => {
-        try {
-            const data = await getDocs(usersCollectionRef);
-            const res = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-            dispatch(setUsers(res));
-        }
-        catch (error) {
-            console.log(error)
-        }
-    };
-    getUsers();
-},[]);
+    const unsubscribe = onSnapshot(usersCollectionRef, (QuerySnapshot) => {
+      let users = [];
+      QuerySnapshot.forEach((doc) => {
+        users.push({ ...doc.data(), id: doc.id });
+      });
+      console.log(users);
+      dispatch(setUsers(users));
+    });
+    return () => unsubscribe;
+  }, []);
 
 
 

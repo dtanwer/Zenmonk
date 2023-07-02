@@ -1,0 +1,36 @@
+.myMsg{
+    margin-top: 15px;
+    font-size: 20px;
+    max-width:250px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+
+}
+
+.reciver{
+    background-color: #fcf6ee;
+    margin-left: 20px;
+    color: #594939;
+    border-radius: 20px 20px 20px 0;
+    
+}
+
+.sender{
+    margin-left: 37%;
+    border-radius: 20px 20px 0 20px;
+    background-color: #e2efff;
+    color: #2a4e7f;
+}
+
+.time{
+    line-height: 0;
+    color: rgb(206, 206, 206);
+    margin: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: 15px;
+}
+.senderTime{
+    text-align: end;
+}
