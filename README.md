@@ -9,4 +9,4 @@
 # Day 8 Redux ToolKit with api
 # Day 9 and 10  CV Builder   https://resumedtanwer.netlify.app/
 # Day 11 https://mymsg-4004f.web.app/
-# Day 15 and 10 https://socialmedia-30f21.web.app/
+# Day 15  https://socialmedia-30f21.web.app/
