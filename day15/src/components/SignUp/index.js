@@ -10,12 +10,18 @@ const SignUp = ({ setlogin }) => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
+
+  // fun to submit form values
   const handelSubmitForm = async (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
 
+    //if password matches
+    if (password === confirmPassword) {
+      //creating user Auth with email and password
       const res =await createUserWithEmailPassword(email,password);
       const UserId = Date.now();
+
+      //creating user in database
       createUserInDataBase(res._tokenResponse, UserId,name,false);
       setEmail('');
       setPassword('');

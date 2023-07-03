@@ -36,7 +36,6 @@ function MyForm({ data, setForm }) {
   const onFill = () => {
     form.setFieldsValue({
       name: data?.name,
-      email: data?.email,
       address: data?.address,
       lastName: data?.lastName,
       bio: data?.bio
@@ -97,12 +96,12 @@ function MyForm({ data, setForm }) {
                 </Form.Item>
               </div>
             </div>
-            <div className="inputEmail">
+            {/* <div className="inputEmail">
               <label htmlFor="email">Email Address</label>
               <Form.Item name="email" rules={[{ required: true, message: 'Please input your Email!' }]}>
                 <Input className='Input' id='email' />
               </Form.Item>
-            </div>
+            </div> */}
             <div className="Address">
               <label htmlFor="address">Address</label>
               <Form.Item name="address" rules={[{ required: true, message: 'Please input your Address' }]}>

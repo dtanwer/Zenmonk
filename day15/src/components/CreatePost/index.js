@@ -21,9 +21,20 @@ function CreatePost() {
   const [type, setType] = useState('text');
   const currentUser=useSelector(state=>state.auth.userData);
   const userImg=currentUser.imgUrl;
-  const uploadFile = () => {
+
+  //function to Uplode all type of Post with the help of type variable 
+  // type==='text' text post
+  // type==='image' image post
+  // type==='video' video post
+  const uploadPost = () => {
+    if(caption==='')
+    {
+      alert('Please Input SomeThing');
+      return;
+    }
     if(type==='text')
     {
+      //creating text post 
       createPost({ UserId:currentUser.UserId,
         userName:currentUser.name,
         mainId:currentUser.id,
@@ -35,8 +46,8 @@ function CreatePost() {
         setCaption('');
         return;
     }
-    // if (file == null) return;
 
+    //genrating post data with image/video   url
     const imageRef = ref(storage, `posts/${file.name + v4()}`);
     uploadBytes(imageRef, file).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
@@ -51,6 +62,7 @@ function CreatePost() {
           like:[],
           Time:serverTimestamp()
         }
+        //creating post with postdata 
         createPost(postData)
         setCaption('');
         setFile(null)
@@ -95,7 +107,7 @@ function CreatePost() {
           </label>
         </div>
         {file && <span className='fileName' >{file.name}</span>}
-        <div className="share" onClick={uploadFile}>
+        <div className="share" onClick={uploadPost}>
           <IosShareOutlinedIcon />
           <span>Post</span>
         </div>

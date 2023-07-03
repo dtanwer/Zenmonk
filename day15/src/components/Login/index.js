@@ -7,7 +7,7 @@ import { userPresent } from '../../utils/userPresent';
 import { createUserInDataBase } from '../../utils/createUser';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLogin, setUsers } from '../../features/authSlice';
-import { onSnapshot, collection } from 'firebase/firestore';
+import { onSnapshot, collection,query,where,getDocs } from 'firebase/firestore';
 import { db } from '../../config/firebase';
 import {updateOnline} from '../../utils/updateOnline'
 
@@ -19,20 +19,24 @@ const Login = ({ setlogin }) => {
   const dispatch = useDispatch();
   const users = useSelector(state => state.auth.allUsers)
 
-
+  //function for login with Email and Password
   const handelSubmitForm = async (e) => {
     e.preventDefault();
     try {
       const res = await signInWithEmailPassword(email, password)
       const UserId = Date.now();
+      //checking user is already present or not
       const filterUser = userPresent(users, res._tokenResponse.email);
       console.log(res._tokenResponse);
       if (filterUser.length === 0) {
+
+        // saving user Data in data base and local storage
         createUserInDataBase(res._tokenResponse, UserId, res._tokenResponse.firstName, true);
         dispatch(setLogin({ email: res._tokenResponse.email,imgUrl:res._tokenResponse.photoUrl, UserId, name: res._tokenResponse.firstName, online: true,notification:[]}));
 
       }
       else {
+        ////updating user is Online and saving userData in storage
         updateOnline(filterUser[0].id, true);
         dispatch(setLogin({ ...filterUser[0], online: true }));
       }
@@ -42,6 +46,8 @@ const Login = ({ setlogin }) => {
       console.error('unable to login with mail and Password', err);
     }
   }
+
+  //fun for login with google 
   const handelOnClickGoogle = async () => {
     try {
       const res = await signInWithGoogle(users);
@@ -49,10 +55,17 @@ const Login = ({ setlogin }) => {
       const filterUser = userPresent(users, res._tokenResponse.email);
       const UserId = Date.now();
       if (filterUser.length === 0) {
-        createUserInDataBase(res._tokenResponse, UserId, res._tokenResponse.firstName, true);
-        dispatch(setLogin({ email: res._tokenResponse.email, UserId, name: res._tokenResponse.firstName, online: true }));
+        createUserInDataBase(res._tokenResponse, UserId, res._tokenResponse?.firstName, true);
+        const q = query(collection(db, "users"), where("UserId", "==", UserId));
+        const docs = await getDocs(q);
+        let id;
+        docs.docs.forEach((doc)=>{
+          id=doc.id;
+          console.log(doc.id)});
+        dispatch(setLogin({ email: res._tokenResponse.email, UserId,imgUrl:res?._tokenResponse?.photoUrl,id,name: res?._tokenResponse?.firstName, online: true }))
       }
       else {
+        //updating user is Online and saving userData in storage
         updateOnline(filterUser[0].id, true);
         dispatch(setLogin({ ...filterUser[0], online: true }));
       }
@@ -62,6 +75,7 @@ const Login = ({ setlogin }) => {
     }
   }
 
+  // geting  all user's data 
   const usersCollectionRef = collection(db, "users");
   useEffect(() => {
     const unsubscribe = onSnapshot(usersCollectionRef, (QuerySnapshot) => {

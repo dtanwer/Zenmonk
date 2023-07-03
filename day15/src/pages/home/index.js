@@ -11,26 +11,16 @@ import PostList from '../../components/PostList';
 function Home() {
   return (
     <div className='Home'>
-        <Navbar/>
-
-        <div className="container">
-          {/* <div className="sidebar">
-
-            <div className="newFeed">
-              
-            </div>  
-
-          </div> */}
-          <div className="posts">
-            <CreatePost/>
-           <PostList/>
-          </div>
-          <div className="friends">
-            <FriendList/>
-          </div>
+      <Navbar />
+      <div className="container">
+        <div className="posts">
+          <CreatePost />
+          <PostList />
         </div>
-
-
+        <div className="friends">
+          <FriendList />
+        </div>
+      </div>
     </div>
   )
 }

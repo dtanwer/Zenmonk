@@ -15,7 +15,7 @@ import Navbar from '../../components/Navbar';
 
 function Profile() {
     const userData = useSelector(state => state.auth.userData);
-    const imgUrl = userData.imgUrl;
+    const imgUrl = userData?.imgUrl;
     const [posts, setPost] = useState([]);
     const [isform, setForm] = useState(false);
 
@@ -32,17 +32,18 @@ function Profile() {
             QuerySnapshot.forEach((doc) => {
                 posts.push({ ...doc.data(), id: doc.id });
             });
+            // const filterData=posts.filter((item)=>item?.id===userData?.id)
             setPost(posts);
         });
         return () => unsubscribe;
     }, [])
 
-    // console.log(userData);
+    console.log(userData);
 
     useEffect(() => {
-        const unsub = onSnapshot(doc(db, "users", userData.id), (doc) => {
+        const unsub = onSnapshot(doc(db, "users", userData?.id), (doc) => {
             // typing=doc.data()?.rooms[roomId];
-            dispatch(setLogin({...userData,...doc.data()}))
+            dispatch(setLogin({...userData,...doc?.data()}))
             // console.log(doc.data());
         });
 
@@ -60,10 +61,10 @@ function Profile() {
                         <img src={imgUrl} alt="dp" />
                     </div>
                     <div className="Userinfo">
-                        <h1>{userData.name} {userData.lastName}</h1>
-                        <h2>{userData.email}</h2>
-                        <h2>{userData.address}</h2>
-                        <h2>{userData.bio}</h2>
+                        <h1>{userData?.name} {userData.lastName}</h1>
+                        <h2>{userData?.email}</h2>
+                        <h2>{userData?.address}</h2>
+                        <h2>{userData?.bio}</h2>
                         <div className="edit" onClick={() => setForm(true)}>
                             <SettingsIcon className='icon' />
                             <span>Edit</span>
@@ -74,9 +75,9 @@ function Profile() {
                 <div className="posts">
                     {
                         posts.map((item) => {
-                            if(item.type!=='text')
+                            if(item?.type!=='text' && item?.mainId===userData?.id)
                             return (
-                                item.type === 'image' ? (<img src={item?.url} className='vid' alt="img" />) :
+                                item?.type === 'image' ? (<img src={item?.url} className='vid' alt="img" />) :
                                     (<video src={item?.url} className='vid' ></video>)
                             )
                         })
