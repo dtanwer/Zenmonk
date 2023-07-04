@@ -13,7 +13,7 @@ const store = configureStore({
     reducer: {
         auth: mypersistReducer
     },
-    middleware: [thunk]
+    middleware: [thunk]   /// 
 });
 
 export default store;
