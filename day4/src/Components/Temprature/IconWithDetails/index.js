@@ -16,22 +16,22 @@ function IconWithContent({ data }) {
             <div className='item active'>
                 <Image preview={false} className='TempIcons' src={sunDark} />
                 <Paragraph className='para'>{getDay().slice(0,4)}</Paragraph>
-                <Paragraph className='para'>{parseInt(data.main.temp)-273}°C</Paragraph>
+                <Paragraph className='para'>{parseInt(data?.temp)-273}°C</Paragraph>
             </div>
             <div className='item'>
                 <Image preview={false} className='TempIcons' src={ranning} />
                 <Paragraph className='para'>{day}</Paragraph>
-                <Paragraph className='para'>{parseInt(data.main.temp)-273}°C</Paragraph>
+                <Paragraph className='para'>{parseInt(data?.temp)-273}°C</Paragraph>
             </div>
             <div className='item'>
                 <Image preview={false} className='TempIcons' src={cloudWithSun} />
                 <Paragraph className='para'>{day}</Paragraph>
-                <Paragraph className='para'>{parseInt(data.main.temp)-273}°C</Paragraph>
+                <Paragraph className='para'>{parseInt(data?.temp)-273}°C</Paragraph>
             </div>
             <div className='item'>
                 <Image preview={false} className='TempIcons' src={ranning} />
                 <Paragraph className='para'>{day}</Paragraph>
-                <Paragraph className='para'>{parseInt(data.main.temp)-273}°C</Paragraph>
+                <Paragraph className='para'>{parseInt(data?.temp)-273}°C</Paragraph>
             </div>
         </div>
     )

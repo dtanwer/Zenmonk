@@ -9,8 +9,8 @@ function Nature({data}) {
     return (
         <div className='nature'>
             <Image preview={false} src={sun} />
-            <Title level={2}> {parseInt(data.main.temp)-273}°C</Title>
-            <Title level={3}>{data.weather[0].main}</Title>
+            <Title level={2}> {parseInt(data?.temp)-273}°C</Title>
+            <Title level={3}>{data?.weather}</Title>
         </div>
     )
 }
