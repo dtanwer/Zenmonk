@@ -4,7 +4,7 @@ import MyCard from '../card';
 import { handelDeleteItem } from '../../utils/changeData';
 import { useSelector } from 'react-redux';
 import { getDraftProducts, getProducts, getProductsForUsers } from '../../services/product.service';
-function Products({ setIsChange,isChange, setIsUpdate, setItem, setIndex }) {
+function Products({ isUpdate,setIsChange,isChange, setIsUpdate, setItem, setIndex }) {
     const currentUser=useSelector((state)=>state.auth.userData)
     const [myProducts, setProducts] = useState([]);
     const [myDraft, setDraft] = useState([]);
@@ -49,11 +49,14 @@ function Products({ setIsChange,isChange, setIsUpdate, setItem, setIndex }) {
         getAllProducts(currentUser._id);
         getAllDraftProducts(currentUser._id);
 
-    }, [isChange])
+    }, [isChange,isUpdate])
 
     const handelDelete = (id) => {
-        setIsChange(!isChange);
         handelDeleteItem(id,isChange)
+        setTimeout(() => {
+            setIsChange(!isChange);
+        }, 400);
+       
     }
 
 

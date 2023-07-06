@@ -12,7 +12,7 @@ function Home({isChange,setIsChange}) {
     <>
       <div className={isUpdate?`HomeDiv`:''}>
       <Navbar/>
-      <Products setIsChange={setIsChange} isChange={isChange} setIsUpdate={setIsUpdate} setIndex={setIndex} setItem={setItem}/>
+      <Products setIsChange={setIsChange} isChange={isChange} isUpdate={isUpdate} setIsUpdate={setIsUpdate} setIndex={setIndex} setItem={setItem}/>
       </div>
       <div>
         {

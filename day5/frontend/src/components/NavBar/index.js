@@ -29,7 +29,7 @@ function Navbar() {
               useType!=='user' && <NavLink to='/add'>New Items</NavLink>
              }
              {
-              useType==='user'?(<NavLink to='/cart' >My Cart</NavLink>):""
+              useType==='user' && useType!=='admin' ?(<NavLink to='/cart' >My Cart</NavLink>):( <NavLink to='/orders' >Orders</NavLink> )
              }
             <Button type="link" onClick={LogOut}>
               LogOut

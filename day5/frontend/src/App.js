@@ -7,6 +7,7 @@ import Profile from './pages/Profile';
 import AddProducts from './pages/AddProducts';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
+import Orders from './components/orders';
 
 function App() {
   const [isChange, setIsChange] = useState(false);
@@ -20,6 +21,7 @@ function App() {
         <Route path='/home' element={<Home isChange={isChange} setIsChange={setIsChange}/>}/>
         <Route path='/add' element={<AddProducts isChange={isChange} setIsChange={setIsChange} />}/>
         <Route path='/cart' element={<Cart/>}/>
+        <Route path='/orders' element={<Orders/>}/>
       </Routes>
       </BrowserRouter>
     </div>

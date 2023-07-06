@@ -1,4 +1,4 @@
-import { deleteProduct } from "../services/product.service";
+import { deleteProduct, updateMyProduct } from "../services/product.service";
 
 export const changeData = (value) => {
 
@@ -20,13 +20,18 @@ export const changeData = (value) => {
 
 }
 
-export const updateProduct = (value, mode, i) => {
+export const updateProduct = async (value, id) => {
 
-    const data = JSON.parse(localStorage.getItem(mode));
-    data[i].name = value.name;
-    data[i].price = value.price;
-    data[i].img = value.img;
-    localStorage.setItem(mode, JSON.stringify(data));
+    // const data = JSON.parse(localStorage.getItem(mode));
+    // data[i].name = value.name;
+    // data[i].price = value.price;
+    // data[i].img = value.img;
+    // localStorage.setItem(mode, JSON.stringify(data));
+    try {
+        await updateMyProduct(value,id)
+    } catch (error) {
+        console.log(error)
+    }
     return;
 
 

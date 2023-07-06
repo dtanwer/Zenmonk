@@ -11,7 +11,6 @@ function MyCard({ i, setIndex, setItem, item, handelDeleteItem, mode, setIsUpdat
     const hanndelUpadte = () => {
         setIsUpdate(true);
         setItem(item);
-        setIndex(i);
     }
 
     const handelClickCart = () => {
