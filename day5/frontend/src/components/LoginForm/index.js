@@ -3,40 +3,67 @@ import './index.css'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Input, Form, Radio, Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../services/auth.service';
+import { useDispatch } from 'react-redux';
+import { setLogin } from '../../slice/authSlice';
 const LoginForm = () => {
     const navigate = useNavigate();
-    const [useType, setUserType] = useState("user")
-    const handleChangeType = (e) => {
-        setUserType(e.target.value);
-        console.log(e.target.value);
+    const dispatch=useDispatch()
+    const [msg,setMsg]=useState("");
+    // const [useType, setUserType] = useState("user")
+    // const handleChangeType = (e) => {
+    //     setUserType(e.target.value);
+    //     console.log(e.target.value);
 
-    };
+    // };
 
-    useEffect(() => {
-        if (localStorage.getItem('id')) {
-            navigate('/home');
-        }
-    },[])
-    console.log(localStorage.getItem('id'));
-    const onFinish = (values) => {
-        const data = JSON.parse(localStorage.getItem(useType));
-        let email = false;
-        if (!data) alert("User Doesnot Exist!!");
+    // useEffect(() => {
+    //     if (localStorage.getItem('id')) {
+    //         navigate('/home');
+    //     }
+    // }, [])
 
-        for (let i = 0; i < data.length; i++) {
-            if (data[i].email === values.email && data[i].password === values.password) {
-                localStorage.setItem('id', JSON.stringify(data[i]));
-                localStorage.setItem('useType', useType);
-                navigate('/home')
-                return;
+    // console.log(localStorage.getItem('id'));
+    const onFinish = async (values) => {
+        // const data = JSON.parse(localStorage.getItem(useType));
+        // let email = false;
+        // if (!data) alert("User Doesnot Exist!!");
+
+        // for (let i = 0; i < data.length; i++) {
+        //     if (data[i].email === values.email && data[i].password === values.password) {
+        //         localStorage.setItem('id', JSON.stringify(data[i]));
+        //         localStorage.setItem('useType', useType);
+        //         navigate('/home')
+        //         return;
+        //     }
+        //     else if (data[i].email === values.email) {
+        //         email = true;
+        //     }
+
+        // }
+        // if (email) alert("Password Did Not match!!!!");
+        // if (!email) alert("Invalid Mail!!!");
+
+        try {
+            // console.log(data);
+            const res = await loginUser(values)
+            // console.log(res);
+            if (res.status === 200) {
+                // dispatch(setLogin({ email: data.email }))
+                dispatch(setLogin(res.data));
+                navigate('/home');
             }
-            else if (data[i].email === values.email) {
-                email = true;
+            if (res.status === 204) {
+                setMsg("User Not Found!!")
             }
-
+            // setData({ email: "", password: "" })
+            // console.log(res)
+        } catch (error) {
+            // setData({ ...data, password: "" });
+            setMsg("Wrong Password!!!")
+            // console.log(error.response)
         }
-        if (email) alert("Password Did Not match!!!!");
-        if (!email) alert("Invalid Mail!!!");
+        console.log(values)
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
@@ -60,7 +87,7 @@ const LoginForm = () => {
                     <Form onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off">
                         <div className="inputEmail inpt">
                             <label htmlFor="email">Username</label>
-                            <Form.Item name="email" rules={[{ required: true, message: 'Please input your Email!' }]}>
+                            <Form.Item name="username" rules={[{ required: true, message: 'Please input your Username!' }]}>
                                 <Input className='Input' id='email' />
                             </Form.Item>
                         </div>
@@ -70,7 +97,8 @@ const LoginForm = () => {
                                 <Input.Password className='Input' id='password' />
                             </Form.Item>
                         </div>
-                        <div className="select">
+                        <div style={{color:"red"}} ><span>{msg}</span></div>
+                        {/* <div className="select">
                             <Form.Item name="userType" rules={[{ required: true, message: 'Please input your Type!' }]}>
                                 <Radio.Group value={useType} onChange={handleChangeType}>
                                     <Radio.Button value="user">User</Radio.Button>
@@ -78,7 +106,7 @@ const LoginForm = () => {
                                     <Radio.Button value="admin">Admin</Radio.Button>
                                 </Radio.Group>
                             </Form.Item>
-                        </div>
+                        </div> */}
                         <div className="btn">
                             <Form.Item>
                                 <Button htmlType="submit" type="primary" block>Login</Button>

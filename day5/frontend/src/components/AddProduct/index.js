@@ -2,34 +2,48 @@ import { useNavigate } from 'react-router-dom';
 import './index.css';
 import { Button, Form, Checkbox, Input } from 'antd';
 import CloseIcon from '@mui/icons-material/Close';
-import { updateProduct,handelDeleteItem } from '../../utils/changeData';
+import { updateProduct, handelDeleteItem } from '../../utils/changeData';
 import addItem from '../../utils/addItem';
+import { addProduct } from '../../services/product.service';
+import { useSelector } from 'react-redux';
+
 function AddProduct({ setIsChange, isChange, index, setIsUpdate, item }) {
+    const currentUser = useSelector((state) => state.auth.userData);
+    console.log(currentUser)
     const [form] = Form.useForm();
     const navigate = useNavigate();
-    const onFinish = (values) => {
-        const mode = values?.draft ? "draft" : "products";
-        if (index !== -1) {
-            const flag = item.draft ? "draft" : "products";
-            if(flag===mode)
-            {
-                console.log(flag,mode);
-                updateProduct(values, mode, index);
-            }
-            else
-            {
-                let data = JSON.parse(localStorage.getItem(mode));
-                localStorage.setItem(mode, JSON.stringify([...data, values]));
-                setIsChange(!handelDeleteItem(index,flag,isChange))
-            }
-            setIsUpdate(false);
+    const onFinish = async (values) => {
+        const mode = values?.isDraft ? true : false;
+        // if (index !== -1) {
+        //     const flag = item.draft ? "draft" : "products";
+        //     if(flag===mode)
+        //     {
+        //         console.log(flag,mode);
+        //         updateProduct(values, mode, index);
+        //     }
+        //     else
+        //     {
+        //         let data = JSON.parse(localStorage.getItem(mode));
+        //         localStorage.setItem(mode, JSON.stringify([...data, values]));
+        //         setIsChange(!handelDeleteItem(index,flag,isChange))
+        //     }
+        //     setIsUpdate(false);
+        // }
+        // else {
+        //     addItem(values,mode)
+        // }
+        const data = { ...values, isDraft: mode, ownerId: currentUser._id }
+        console.log(data)
+        try {
+            const res = await addProduct(data);
+            console.log(res.data);
+        } catch (error) {
+            console.log(error)
         }
-        else {
-            addItem(values,mode)
-        }
+
         navigate('/home');
         setIsChange(!isChange);
-        setIsUpdate(false);
+        // setIsUpdate(false);
         onReset()
     };
 
@@ -92,7 +106,7 @@ function AddProduct({ setIsChange, isChange, index, setIsUpdate, item }) {
                     </Form.Item>
 
                     <Form.Item
-                        name="draft"
+                        name="isDraft"
                         valuePropName="checked"
                         wrapperCol={{
                             offset: 8,

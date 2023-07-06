@@ -1,3 +1,5 @@
+import { deleteProduct } from "../services/product.service";
+
 export const changeData = (value) => {
 
     let userData = JSON.parse(localStorage.getItem('id'));
@@ -30,10 +32,16 @@ export const updateProduct = (value, mode, i) => {
 
 }
 
-export const handelDeleteItem=(i,mode,isChange)=>{
-    const data = JSON.parse(localStorage.getItem(mode));
-        data[i].name = '';
-        localStorage.setItem(mode, JSON.stringify(data));
+export const handelDeleteItem = async (id, isChange) => {
+    // const data = JSON.parse(localStorage.getItem(mode));
+    //     data[i].name = '';
+    //     localStorage.setItem(mode, JSON.stringify(data));
+    try {
+        await deleteProduct(id);
         return isChange;
+    } catch (error) {
+        console.log(error);
+    }
+
 }
 

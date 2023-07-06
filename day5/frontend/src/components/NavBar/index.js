@@ -2,15 +2,20 @@ import React from 'react'
 import './index.css'
 import { useNavigate,NavLink } from 'react-router-dom';
 import { Button} from 'antd';
+import { useDispatch,useSelector} from 'react-redux';
+import { setLogOut } from '../../slice/authSlice';
 
 function Navbar() {
-  const useType=localStorage.getItem('useType');
+  const dispatch=useDispatch()
+  const currentUser=useSelector((state)=>state.auth.userData)
+  // const useType=localStorage.getItem('useType');
+  const useType=currentUser.type;
     const navigate=useNavigate();
     const handelProfile=()=>{
         navigate('/profile');
     }
   const LogOut=()=>{
-    localStorage.removeItem("id");
+    dispatch(setLogOut());
     navigate('/');
   }
   return (
