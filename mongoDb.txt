@@ -1,0 +1,122 @@
+db.<collectionName>.find({})  return all data from collection 
+db.<collectionName>.aggregate([]) return all data from collection
+
+aggregate array can have multipal stages operaters all db.<collectionName>.aggregate([stages1,stage2,stage3])
+
+
+( 	
+			***copied from Uttam Ji***
+
+	query==> any special query you want to use if uses as {} gives all the docs
+	doc==>document
+	option==>to validate order ie. {ordered:true}
+	filter==> to filter the docs
+	field==> data entry of a document should be used as string else will get a error
+) 
+
+syntax for Stage operater: {$<stageOperater>:{}}
+
+StageOperates --:
+
+match:- use to find a document by sertain query(match specfic documents)
+group:- group document by certain criteria
+project:- filter field in document
+sort:- sort object
+count:- count number of obj and document
+limit:- limit number of documents
+skip:- skip certain amount of document
+out:- write result of aggration in certain collection
+
+
+Aggregate Expression:- It the name of the field in input documents
+	Syntax:-
+	"$<fie1dName>"
+eg:-
+{ $group: { _id:"$company"} }
+{ $group: { _id:"$company.location.country"} }  // grouping nexted fileds
+
+Example:-
+{$match:{age:{$gt:20}}
+{$group:{_id:"$age"}}
+{$sort:{count:-1}}
+
+======Match=======
+db.person.aggregate([{$match: {age: {$gt:25}}}])
+
+Eg:-
+{ $match: { city: "New York" } }// retun all document city=New York
+{ $match: {age: {$gt: 25} } }  // retun all document age>25
+{ $match: {$and: [ {gender: "female"} {age: {$gt: 25}} ] } } // retun all document age>25 and gernder=female
+{ $match:{tags:{$size:3}}  //  return all document of tags(array) size 3
+
+
+=======Group=======
+In group _id in required field
+db.person.aggregate([{$group: {_id:"$age"}])   // return new document group by age
+db.person.aggregate([{$group: {_id:{age:"$age",gender:"$gender"}}]) // group by multipal fields 
+
+
+
+======Match and Group=======
+
+db.person.aggregate([  
+		$match: { city: "New York" } },
+		{$group: {_id:{age:"$age",gender:"$gender"}}
+	]) 
+
+//this will return new document having city New York and group ny age and gender
+
+====== Group and Match =======
+
+db.person.aggregate([  
+		{$group: {_id:{age:"$age",gender:"$gender"}},
+		$match: { gender: "male" } }
+	]) 
+
+//first it will group documet by age and gender then match for gender=male
+
+
+====== Count =======
+
+this will return length of document in less time as compare to other methods
+
+// output in 0,21 sec  (very less time)(It is server side Method)
+
+db.persons.aggregate( [{$count :"totalDocuments" } ] ) // this will return a obj of count {totalDocument:100}
+db. persons.find({}).count()   // this will return number 100
+
+--Count with match and group:-
+
+db.persons.aggregate([
+		{$match: {age: {$gte: 25}}},
+		{$group:{_id:{eyeColor :"$eyeColor", age"$age"}}},   
+		{$count :"eyeColorAndAge"}
+])
+
+//first it will get all documet having age>25 and then group according to eyeColor and age then return a count obj.
+// output will be an obj {eyeColorAndAge:20}  
+
+
+// Other method for coundting (client side method)
+db.persons.aggregate([]).toArray().length  // output in 1,7 sec
+db.persons.aggregate([]).itcount()    // output in 1,4 sec
+
+
+
+========Sort========
+
+-1 is for desc
+ 1 is for Asc
+db.persons.aggregate([{ $sort: {score:-1}}])    // sort all document according to score in desc
+db.persons.aggregate([{ $sort: {age: 1 ,country: 1} }]) // sort in asc order with age  if any document have same age then it will consider country
+
+=======Project======
+It is use to include ,Exclude or add new field
+1:- field will include
+0:- field will exclude
+
+$project :{name :1 "company. title" :1}  // _id will be by default include in project 
+{ $project: {_id:0,name: 1 age: 1} }   // _id will be exclude 
+    
+
+
